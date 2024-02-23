@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:greenglide/screens/intro/screen1_haxk.dart';
+import 'package:greenglide/screens/intro/screen2_flutter.dart';
+import 'package:greenglide/screens/intro/screen3_greenglide.dart';
 void main()  {
    WidgetsFlutterBinding.ensureInitialized();
    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft])
    .then((_) {
-    runApp(const App());
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []
+
+    ).then((value) => {
+      runApp(const App())
+    });
   });
+}
+
+
+ThemeData _buildTheme(brightness) {
+  var baseTheme = ThemeData(brightness: brightness);
+
+  return baseTheme.copyWith(
+    // textTheme: GoogleFonts.luckiestGuyTextTheme(baseTheme.textTheme),
+  );
 }
 
 class App extends StatelessWidget {
@@ -13,10 +30,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: "Green Glide",
-    home: Scaffold(
-      backgroundColor: Colors.green,
-      body: Center(child: Text("Green Glide App Check"),),),
+    return  MaterialApp(title: "Green Glide",
+     theme: _buildTheme(Brightness.dark),
+    home:const HaxkIntro()
     );
   }
 }
