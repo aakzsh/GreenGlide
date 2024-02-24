@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/main.dart';
 import 'package:greenglide/screens/menu/menu_home.dart';
 
 class GreenGlideIntro extends StatefulWidget {
@@ -14,13 +15,28 @@ class GreenGlideIntro extends StatefulWidget {
 class _GreenGlideIntroState extends State<GreenGlideIntro> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<double> _animation;
+    double _scale = 0.0;
+  double _opacity = 1.0;
+
+  void _startAnimation() {
+    setState(() {
+      _scale = 1.0;
+      _opacity = 0.0;
+    });
+  }
+  
   @override
      void initState(){
+      
+       Timer(const Duration(milliseconds: 10), () {
+        _startAnimation();
+
+    });
     Timer(const Duration(milliseconds: 2500), () {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const MenuHome()),
-          (route) => false);
+      Navigator.of(context).pushAndRemoveUntil(
+  CustomPageRoute( MenuHome()),
+  (route) => false,
+);
     });
     _controller = AnimationController(
       vsync: this,
@@ -51,7 +67,16 @@ class _GreenGlideIntroState extends State<GreenGlideIntro> with SingleTickerProv
             colors: [AppColors.gradientorange, AppColors.gradientpink],
           ),
         ),
-        child: FadeTransition(opacity: _animation, child: Hero(tag: "logo", child:  Image.asset("assets/images/logo.png", scale: 4,),))
+        child: FadeTransition(opacity: _animation, child: Hero(tag: "logo", child:  
+          AnimatedContainer(
+            
+              duration: Duration(milliseconds: 500),
+              curve: Curves.easeOut,
+              transform: Matrix4.diagonal3Values(_scale, _scale, 1.0),
+              // opacity: _opacity,
+              child:  Image.asset("assets/images/logo.png", scale: 4,)
+            ),
+      ))
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/main.dart';
 import 'package:greenglide/screens/intro/screen2_flutter.dart';
 
 class HaxkIntro extends StatefulWidget {
@@ -16,15 +17,17 @@ class _HaxkIntroState extends State<HaxkIntro> with SingleTickerProviderStateMix
   late Animation<double> _animation;
   @override
   void initState(){
-    Timer(const Duration(milliseconds: 1500), () {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const FlutterIntro()),
-          (route) => false);
+    Timer(const Duration(milliseconds: 2500), () {
+               Navigator.of(context).push(CustomPageRoute(FlutterIntro()));
+
+      // Navigator.pushAndRemoveUntil(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const FlutterIntro()),
+      //     (route) => false);
     });
      _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500), // Adjust duration as needed
+      duration: Duration(milliseconds: 1500), // Adjust duration as needed
     );
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
@@ -46,16 +49,20 @@ class _HaxkIntroState extends State<HaxkIntro> with SingleTickerProviderStateMix
         child: FadeTransition(
           opacity: _animation,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(""),
-              Hero(
-                tag: "haxklogo",
-                child: Image.asset(
-                  "assets/images/haxk.png",
-                  scale: 4,
+              SizedBox(
+                height: 120,
+                child: Hero(
+                  tag: "haxklogo",
+                  child: Image.asset(
+                    "assets/images/haxk.png",
+                    scale: 4,
+                  ),
                 ),
               ),
+              SizedBox(height: 20,),
               InkWell(
                   onTap: () {
                     Navigator.push(context,

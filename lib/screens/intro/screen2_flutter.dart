@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/main.dart';
 import 'package:greenglide/screens/intro/screen3_greenglide.dart';
 
 class FlutterIntro extends StatefulWidget {
@@ -18,10 +19,12 @@ class _FlutterIntroState extends State<FlutterIntro> with SingleTickerProviderSt
 
   void initState(){
     Timer(const Duration(milliseconds: 1500), () {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const GreenGlideIntro()),
-          (route) => false);
+      // Navigator.pushAndRemoveUntil(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const GreenGlideIntro()),
+      //     (route) => false);
+                     Navigator.of(context).push(CustomPageRoute(GreenGlideIntro()));
+
     });
      _controller = AnimationController(
       vsync: this,
@@ -46,41 +49,45 @@ class _FlutterIntroState extends State<FlutterIntro> with SingleTickerProviderSt
         height: double.maxFinite,
         color: AppColors.blackbg,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(""),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                    width: 120,
-                    child: Hero(
-                      tag: "haxklogo",
-                      child: Image.asset(
-                        "assets/images/haxk.png",
-                        scale: 4,
-                      ),
-                    )),
-                SizedBox(
-                  width: 60,
-                ),
-               FadeTransition(opacity: _animation, child:  Container(
-                  width: 1,
-                  height: 100,
-                  color: Colors.white,
-                ),),
-                SizedBox(
-                  width: 60,
-                ),
-                FadeTransition(opacity: _animation, child: SizedBox(
-                  width: 120,
-                  child: Image.asset(
-                    "assets/images/flutter.png",
-                    scale: 4,
+            SizedBox(
+              height: 120,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: 120,
+                      child: Hero(
+                        tag: "haxklogo",
+                        child: Image.asset(
+                          "assets/images/haxk.png",
+                          scale: 4,
+                        ),
+                      )),
+                  SizedBox(
+                    width: 60,
                   ),
-                ),)
-              ],
+                 FadeTransition(opacity: _animation, child:  Container(
+                    width: 1,
+                    height: 70,
+                    color: Colors.white,
+                  ),),
+                  SizedBox(
+                    width: 60,
+                  ),
+                  FadeTransition(opacity: _animation, child: SizedBox(
+                    width: 120,
+                    child: Image.asset(
+                      "assets/images/flutter.png",
+                      scale: 4,
+                    ),
+                  ),)
+                ],
+              ),
             ),
+            SizedBox(height: 20,),
             Text(
               "BUILT WITH FLUTTER",
               style: TextStyle(fontFamily: "Lexend", fontSize: 20),
