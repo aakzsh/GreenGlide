@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/widgets/settings/settings_options.dart';
+import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -11,37 +13,19 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      
-      backgroundColor: AppColors.blue,
-      child: Container(width: 400, height: 250,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [Text(
-                                    "SETTINGS",
-                                    style: TextStyle(
-                                        fontFamily: "Luckiest Guy",
-                                        fontSize: 25,
-                                        shadows: const [
-                                          Shadow(
-                                              // bottomLeft
-                                              offset: Offset(-1.5, -1.5),
-                                              color: Colors.black),
-                                          Shadow(
-                                              // bottomRight
-                                              offset: Offset(1.5, -1.5),
-                                              color: Colors.black),
-                                          Shadow(
-                                              // topRight
-                                              offset: Offset(1.5, 1.5),
-                                              color: Colors.black),
-                                          Shadow(
-                                              // topLeft
-                                              offset: Offset(-1.5, 1.5),
-                                              color: Colors.black),
-                                        ]),
-                                  )],),
-      )
-      );
+    return const Dialog(
+        backgroundColor: AppColors.blue,
+        child: SizedBox(
+          width: 400,
+          height: 250,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [LuckiestGuyText(text: "SETTINGS", fontSize: 25.0),
+            SettingsOption(title: "SOUNDS"),
+            SettingsOption(title: "ONLINE MODE"),
+            SettingsOption(title: "MONEY MODE")
+            ],
+          ),
+        ));
   }
 }

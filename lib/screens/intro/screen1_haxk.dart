@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
-import 'package:greenglide/main.dart';
 import 'package:greenglide/screens/intro/screen2_flutter.dart';
+import 'package:greenglide/utils/animations/page_transition.dart';
 
 class HaxkIntro extends StatefulWidget {
   const HaxkIntro({super.key});
@@ -12,33 +11,30 @@ class HaxkIntro extends StatefulWidget {
   State<HaxkIntro> createState() => _HaxkIntroState();
 }
 
-class _HaxkIntroState extends State<HaxkIntro> with SingleTickerProviderStateMixin {
-    late AnimationController _controller;
+class _HaxkIntroState extends State<HaxkIntro>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
   late Animation<double> _animation;
   @override
-  void initState(){
+  void initState() {
     Timer(const Duration(milliseconds: 2500), () {
-               Navigator.of(context).push(CustomPageRoute(FlutterIntro()));
-
-      // Navigator.pushAndRemoveUntil(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => const FlutterIntro()),
-      //     (route) => false);
+      Navigator.of(context).push(CustomPageRoute(const FlutterIntro()));
     });
-     _controller = AnimationController(
+    _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1500), // Adjust duration as needed
+      duration: const Duration(milliseconds: 1500), // Adjust duration as needed
     );
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
     super.initState();
   }
 
-    @override
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +47,7 @@ class _HaxkIntroState extends State<HaxkIntro> with SingleTickerProviderStateMix
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(""),
+              const Text(""),
               SizedBox(
                 height: 120,
                 child: Hero(
@@ -62,13 +58,17 @@ class _HaxkIntroState extends State<HaxkIntro> with SingleTickerProviderStateMix
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FlutterIntro()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FlutterIntro()));
                   },
-                  child: Text(
+                  child: const Text(
                     "TEAM HAXK PRESENTS",
                     style: TextStyle(fontFamily: "Lexend", fontSize: 20),
                   )),
