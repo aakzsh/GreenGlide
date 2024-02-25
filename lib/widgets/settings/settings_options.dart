@@ -19,7 +19,7 @@ class _SettingsOptionState extends State<SettingsOption> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          LuckiestGuyText(text: widget.title, fontSize: 30.0),
+          LuckiestGuyText(text: widget.title, fontSize: 25.0),
           !selected
               ? GestureDetector(
                 onTap: ()=>setState(() {

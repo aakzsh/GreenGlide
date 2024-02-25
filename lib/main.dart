@@ -23,5 +23,6 @@ class App extends StatelessWidget {
         title: "Green Glide",
         theme: buildTheme(Brightness.dark),
         home: const HaxkIntro());
+        // home: const HaxkIntro());
   }
 }
