@@ -99,7 +99,7 @@ class _CheckinRewardState extends State<CheckinReward>
                                 children: [
                                   Image.asset(
                                     "assets/images/coin.png",
-                                    height: 80,
+                                    height: 100,
                                   ),
                                   const Align(
                                     alignment: Alignment.center,
@@ -115,7 +115,7 @@ class _CheckinRewardState extends State<CheckinReward>
                                 children: [
                                   Image.asset(
                                     "assets/images/coin.png",
-                                    height: 80,
+                                    height: 100,
                                   ),
                                   const Align(
                                     alignment: Alignment.center,

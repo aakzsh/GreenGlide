@@ -1,0 +1,1 @@
+enum PlayerMovements {jump, down, run}

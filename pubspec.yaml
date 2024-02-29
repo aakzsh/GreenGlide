@@ -36,6 +36,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/models/
+    - assets/images/scenery/
 
   fonts:
     - family: Lexend

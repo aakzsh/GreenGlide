@@ -1,0 +1,1 @@
+enum ObstaclePosition  {up, middle}

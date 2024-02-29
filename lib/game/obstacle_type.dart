@@ -1,0 +1,1 @@
+enum ObstacleType {car, plane, bicyle}
