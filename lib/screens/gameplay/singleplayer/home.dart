@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:greenglide/game/runner.dart';
 import 'package:greenglide/screens/gameplay/singleplayer/score.dart';
 import 'package:greenglide/storylines/storyline_widget.dart';
 
@@ -12,11 +14,11 @@ class SinglePlayerHome extends StatefulWidget {
 }
 
 class _SinglePlayerHomeState extends State<SinglePlayerHome> {
-   bool showMission = true;
-   late Timer _timer;
-   @override
-   void initState() {
-    _timer =  Timer(const Duration(milliseconds: 10000), () {
+  bool showMission = true;
+  late Timer _timer;
+  @override
+  void initState() {
+    _timer = Timer(const Duration(milliseconds: 10000), () {
       setState(() {
         showMission = false;
       });
@@ -25,7 +27,7 @@ class _SinglePlayerHomeState extends State<SinglePlayerHome> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _timer.cancel();
     super.dispose();
   }
@@ -37,9 +39,19 @@ class _SinglePlayerHomeState extends State<SinglePlayerHome> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-         const SinglePlayerScore(),
-          showMission?Center(child: StorylineWidget(context: context),):const SizedBox()
-        ],),
+          //  const SinglePlayerScore(),
+          
+          showMission
+              ? Center(
+                  child: StorylineWidget(context: context),
+                )
+              :  GameWidget(
+            game: GreenGlideGame(),
+            
+            // initialActiveOverlays: const [],
+          ),
+        ],
+      ),
     );
   }
 }

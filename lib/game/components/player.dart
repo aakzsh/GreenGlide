@@ -22,7 +22,6 @@ int points = 0;
 //       Timer interval = Timer(0.2);
 //  interval.onTick = () => fall();
 
-
   }
 
   void fall() {
