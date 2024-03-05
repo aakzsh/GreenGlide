@@ -4,6 +4,7 @@ import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/game/assets.dart';
 import 'package:greenglide/game/configuration.dart';
+import 'package:greenglide/game/obstacle_type.dart';
 import 'package:greenglide/game/player_movements.dart';
 import 'package:greenglide/game/runner.dart';
 
@@ -11,6 +12,7 @@ class Player extends SpriteGroupComponent<PlayerMovements>
     with HasGameRef<GreenGlideGame>, CollisionCallbacks {
   Player();
 int points = 0;
+ObstacleType currentVehicle = ObstacleType.walking;
   void jump() {
     add(MoveByEffect(
       Vector2(0, Config.gravity),
@@ -18,10 +20,6 @@ int points = 0;
       onComplete: () => current = PlayerMovements.down,
     ));
     current = PlayerMovements.run;
-    // fall();
-//       Timer interval = Timer(0.2);
-//  interval.onTick = () => fall();
-
   }
 
   void fall() {
@@ -67,6 +65,7 @@ int points = 0;
     super.onCollisionStart(intersectionPoints, other);
     updatePoints();
     gameRef.isHit = true;
+    // currentVehicle = 
     // gameRef.isHit = true;
     debugPrint("collison");
   }

@@ -16,7 +16,7 @@ import '../widgets/text/luckiest_guy_textstyle.dart';
 class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   GreenGlideGame();
   late Player player;
-  int time = 20;
+  int time = 100;
   late TextComponent score;
   late TextComponent progress;
   late TextComponent remainingTime;

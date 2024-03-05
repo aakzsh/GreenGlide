@@ -14,8 +14,9 @@ class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>{
 
   @override
   Future<void> onLoad() async{
-    final obstacle = await Flame.images.load(Assets.obstacle);
-    size = Vector2(30, 30);
+
+    final obstacle = await Flame.images.load(coinAssets[type]!);
+    size = Vector2(50, 50);
 
     switch(obstaclePosition){
       case ObstaclePosition.middle:
