@@ -11,8 +11,11 @@ import 'package:greenglide/game/runner.dart';
 class Player extends SpriteGroupComponent<PlayerMovements>
     with HasGameRef<GreenGlideGame>, CollisionCallbacks {
   Player();
-int points = 0;
-ObstacleType currentVehicle = ObstacleType.walking;
+  int points = 0;
+  ObstacleType currentVehicle = ObstacleType.walking;
+  ObstacleType prevVehicle = ObstacleType.walking;
+  int prevG = 0;
+  int currentG = 0;
   void jump() {
     add(MoveByEffect(
       Vector2(0, Config.gravity),
@@ -49,24 +52,28 @@ ObstacleType currentVehicle = ObstacleType.walking;
     add(CircleHitbox());
   }
 
-  void updatePoints(){
-    gameRef.player.points ++;
-  }
-  @override
-  void update(double dt){
-    super.update(dt);
-    if(position.y < gameRef.size.y / 1.5) {
-      position.y += Config.fallVelocity*dt;
-    }
+  void updatePoints() {
+    gameRef.player.points++;
   }
 
   @override
-  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other){
-    super.onCollisionStart(intersectionPoints, other);
+  void update(double dt) {
+    
+    if (position.y < gameRef.size.y / 1.5) {
+      position.y += Config.fallVelocity * dt;
+    }
+    super.update(dt);
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+   
     updatePoints();
     gameRef.isHit = true;
-    // currentVehicle = 
+    // currentVehicle =
     // gameRef.isHit = true;
     debugPrint("collison");
+     super.onCollisionStart(intersectionPoints, other);
   }
 }

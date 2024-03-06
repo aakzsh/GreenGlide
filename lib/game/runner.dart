@@ -6,7 +6,6 @@ import 'package:greenglide/game/components/background.dart';
 import 'package:greenglide/game/components/ground.dart';
 import 'package:greenglide/game/components/obstacle_group.dart';
 import 'package:greenglide/game/configuration.dart';
-import 'package:greenglide/main.dart';
 import 'package:greenglide/models/global_key.dart';
 import 'package:greenglide/screens/gameplay/singleplayer/score.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
@@ -27,7 +26,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   @override
   Future<void> onLoad() async {
     addAll([
-      Background(),
+      // Background(),
       Ground(),
       player = Player(),
       ObstacleGroup(),
@@ -40,11 +39,13 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   }
 
   void updateTime() {
-    // debugPrint("time is  $time");
     if(time==0){
       pauseEngine();
       Navigator.pushAndRemoveUntil(NavigationService.navigatorKey.currentContext!, CustomPageRoute(SinglePlayerScore(score: player.points)), (route) => false);
     }
+    // if(time%5==0){
+    //   aw
+    // }
     time--;
   }
 

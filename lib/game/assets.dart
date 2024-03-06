@@ -3,7 +3,7 @@
 import 'package:greenglide/game/obstacle_type.dart';
 
 class Assets{
-  static const background = "scenery/bluebg.png";
+  static const background = "scenery/sky.png";
   static const ground = "scenery/road.png";
   static const player = "dashatar.png";
   static const obstacle = "coin.png";
@@ -34,4 +34,16 @@ Map<ObstacleType, String> coinAssets = {
   ObstacleType. skateboard :"icons/skatecoin.png",
   ObstacleType. walking :"icons/walkcoin.png",
   ObstacleType. taxi :"icons/taxicoin.png",
+};
+
+Map<ObstacleType, int> groups = {
+  ObstacleType.car: 1,
+  ObstacleType.bicycle: 0,
+  ObstacleType.bike: 1,
+  ObstacleType.metro: 2,
+  ObstacleType.train: 2,
+  ObstacleType.airplane: 3,
+  ObstacleType.skateboard: 0,
+  ObstacleType.walking: 0,
+  ObstacleType.taxi: 1
 };

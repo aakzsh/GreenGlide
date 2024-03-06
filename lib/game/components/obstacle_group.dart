@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:greenglide/game/assets.dart';
 import 'package:greenglide/game/components/obstacle.dart';
-import 'package:greenglide/game/configuration.dart';
 import 'package:greenglide/game/obstacle_position.dart';
 import 'package:greenglide/game/obstacle_type.dart';
 import 'package:greenglide/game/runner.dart';
@@ -23,28 +23,33 @@ class ObstacleGroup extends PositionComponent with HasGameRef<GreenGlideGame> {
     // Access the enum value at the random index
     ObstaclePosition randomEnumValue = enumValues[randomIndex];
 
-     List<ObstacleType> typeenums = ObstacleType.values;
+    List<ObstacleType> typeenums = ObstacleType.values;
     // Generate a random index
     int randomIn = Random().nextInt(typeenums.length);
     // Access the enum value at the random index
     ObstacleType randomType = typeenums[randomIn];
     typeOfObs = randomType;
 
-
-    addAll(
-        [Obstacle(obstaclePosition: randomEnumValue, type: randomType)]);
+    addAll([Obstacle(obstaclePosition: randomEnumValue, type: randomType)]);
   }
 
   @override
-  void update(double dt) {
-    super.update(dt);
+  void update(double dt) async {
     if (gameRef.isHit) {
-      removeFromParent();
-      gameRef.isHit = false;
-      // ObstacleType
+      gameRef.player.prevVehicle = gameRef.player.currentVehicle;
       gameRef.player.currentVehicle = typeOfObs;
-      // gameRef.player. 
+      gameRef.player.prevG = gameRef.player.currentG;
+      gameRef.player.currentG = groups[typeOfObs]!;
+      removeFromParent();
+
+   
+
+      gameRef.isHit = false;
+      // TODO: some sort of mismatch is here
+      print("current vehicle ${gameRef.player.currentVehicle}");
+      // ObstacleType
     }
-    position.x -= obstacleSpeeds[gameRef.player.currentVehicle]! * dt/3;
+    position.x -= obstacleSpeeds[gameRef.player.currentVehicle]! * dt / 3;
+    super.update(dt);
   }
 }
