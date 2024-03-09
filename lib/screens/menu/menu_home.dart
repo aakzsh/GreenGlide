@@ -6,6 +6,7 @@ import 'package:greenglide/screens/learn/learn_more.dart';
 import 'package:greenglide/screens/menu/settings.dart';
 import 'package:greenglide/screens/menu/wallet.dart';
 import 'package:greenglide/screens/profile/profile_home.dart';
+import 'package:greenglide/services/shared_preferences/userdetails.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
 import 'package:greenglide/widgets/coins/coins_view.dart';
 import 'package:greenglide/widgets/parallelogram/parallelogram.dart';
@@ -24,10 +25,18 @@ class _MenuHomeState extends State<MenuHome> {
   bool _isAnimating = false;
   bool show = true;
   late Timer _timer;
+  String username = "";
+  void setUsername() async {
+    var user = await getUsernameLocally();
+    setState(() {
+      username = user.toString();
+    });
+  }
+
   @override
   void initState() {
     _startTimer();
-
+    setUsername();
     super.initState();
   }
 
@@ -181,28 +190,28 @@ class _MenuHomeState extends State<MenuHome> {
                                 context, CustomPageRoute(const Profile())),
                             child: Container(
                               height: 40,
-                              width: 140,
+                              width: 140 + username.length*1.0,
                               decoration: BoxDecoration(
                                   color: AppColors.tealblue,
                                   border: Border.all(
                                       color: Colors.black, width: 1.5),
                                   borderRadius: BorderRadius.circular(5)),
-                              child: const Row(
+                              child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
-                                  CircleAvatar(
+                                  const CircleAvatar(
                                     backgroundColor: AppColors.golden,
                                     radius: 15,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
-                                    "@aakzsh",
-                                    style: TextStyle(
+                                    "@$username",
+                                    style: const TextStyle(
                                         color: Colors.black, fontSize: 15),
                                   )
                                 ],

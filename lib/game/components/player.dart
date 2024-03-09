@@ -70,7 +70,7 @@ class Player extends SpriteGroupComponent<PlayerMovements>
       Set<Vector2> intersectionPoints, PositionComponent other) {
    
     updatePoints();
-    gameRef.isHit = true;
+    gameRef.isHit = true; 
     // currentVehicle =
     // gameRef.isHit = true;
     debugPrint("collison");

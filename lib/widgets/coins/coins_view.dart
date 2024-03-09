@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/menu/checkin_reward.dart';
+import 'package:greenglide/services/firebase/dailycheckin.dart';
+import 'package:greenglide/services/shared_preferences/userdetails.dart';
 
 class CoinView extends StatefulWidget {
   const CoinView({super.key});
@@ -10,6 +14,18 @@ class CoinView extends StatefulWidget {
 }
 
 class _CoinViewState extends State<CoinView> {
+  int coins = 0;
+  updateData()async{
+    var c = await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).get();
+   setState(() {
+     coins = c.data()!["coins"];
+   }); 
+  }
+  @override
+  void initState(){
+    super.initState();
+    updateData();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,15 +56,17 @@ class _CoinViewState extends State<CoinView> {
               )
             ],
           ),
-          const Text(
-            "243",
-            style: TextStyle(color: Colors.black, fontSize: 18),
+           Text(
+            coins.toString(),
+            style: const TextStyle(color: Colors.black, fontSize: 18),
           ),
           InkWell(
-            onTap: () {
-              showDialog(
+            onTap: ()async {
+            showDialog(
                   context: context,
                   builder: ((context) => const CheckinReward()));
+             await dailyCheckin();
+            await updateData();
             },
             child: Image.asset(
               "assets/icons/add.png",

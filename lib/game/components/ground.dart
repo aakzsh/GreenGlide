@@ -35,9 +35,9 @@ class Ground extends ParallaxComponent<GreenGlideGame>
     parallax?.baseVelocity.x =
         obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
     // await loadLayers();
-    // if (gameRef.player.currentG != gameRef.player.prevG) {
-    //   await loadLayers();
-    // }
+    if (gameRef.player.currentG != gameRef.player.prevG) {
+      await loadLayers();
+    }
     super.update(dt);
   }
 }

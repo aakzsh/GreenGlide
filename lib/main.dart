@@ -33,8 +33,7 @@ class App extends StatelessWidget {
 
         title: "Green Glide",
         theme: buildTheme(Brightness.dark),
-        home:  GameWidget(game: 
-        GreenGlideGame(),));
+        home:  GameWidget(game: GreenGlideGame(),));
         // home: const HaxkIntro());
   }
 }
