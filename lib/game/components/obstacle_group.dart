@@ -11,7 +11,7 @@ class ObstacleGroup extends PositionComponent with HasGameRef<GreenGlideGame> {
   ObstacleGroup();
   // final _random = Random();
   late ObstacleType typeOfObs;
-
+  
   @override
   Future<void> onLoad() async {
     position.x = gameRef.size.x;
@@ -27,9 +27,10 @@ class ObstacleGroup extends PositionComponent with HasGameRef<GreenGlideGame> {
     // Generate a random index
     int randomIn = Random().nextInt(typeenums.length);
     // Access the enum value at the random index
-    ObstacleType randomType = typeenums[randomIn];
+    ObstacleType randomType = typeenums[gameRef.ind%(typeenums.length)];
     typeOfObs = randomType;
-
+    gameRef.ind++;
+    print("lol ${gameRef.ind}");
     addAll([Obstacle(obstaclePosition: randomEnumValue, type: randomType)]);
   }
 
@@ -40,14 +41,12 @@ class ObstacleGroup extends PositionComponent with HasGameRef<GreenGlideGame> {
       gameRef.player.currentVehicle = typeOfObs;
       gameRef.player.prevG = gameRef.player.currentG;
       gameRef.player.currentG = groups[typeOfObs]!;
+
+      gameRef.obsGroup.typeOfObs = typeOfObs;
       removeFromParent();
-
-   
-
       gameRef.isHit = false;
       // TODO: some sort of mismatch is here
       print("current vehicle ${gameRef.player.currentVehicle}");
-      // ObstacleType
     }
     position.x -= obstacleSpeeds[gameRef.player.currentVehicle]! * dt / 3;
     super.update(dt);

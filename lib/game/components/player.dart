@@ -67,9 +67,17 @@ class Player extends SpriteGroupComponent<PlayerMovements>
 
   @override
   void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-   
+      Set<Vector2> intersectionPoints, PositionComponent other) async{
+         List<ObstacleType> typeenums = ObstacleType.values;
+     
     updatePoints();
+        obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
+    int index = gameRef.ind%(typeenums.length)-1;
+    if(index==-1){
+      index = typeenums.length-1;
+    }
+     await gameRef.ground.loadLayers(typeenums[index]);
+    print("chemck "+typeenums[index].toString());
     gameRef.isHit = true; 
     // currentVehicle =
     // gameRef.isHit = true;

@@ -15,10 +15,13 @@ import '../widgets/text/luckiest_guy_textstyle.dart';
 class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   GreenGlideGame();
   late Player player;
+  late Ground ground;
+  late ObstacleGroup obsGroup;
   int time = 100;
   late TextComponent score;
   late TextComponent progress;
   late TextComponent remainingTime;
+  int ind = 0;
   bool isHit = false;
   Timer interval = Timer(Config.obstacleInterval, repeat: true);
   Timer remainingT =Timer(Config.obstacleInterval, repeat: true);
@@ -27,9 +30,10 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   Future<void> onLoad() async {
     addAll([
       // Background(),
-      Ground(),
+      // Ground(),
+      ground = Ground(),
       player = Player(),
-      ObstacleGroup(),
+      obsGroup = ObstacleGroup(),
       score = buildScore(),
       progress = buildProgress(),
       remainingTime = buildRemainingTime()
@@ -84,6 +88,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
     super.update(dt);
     interval.update(dt);
     score.text = "Score: ${player.points}";
+
     remainingTime.text = "$time\nTIME REMAINING";
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
 class SettingsOption extends StatefulWidget {
@@ -11,7 +12,22 @@ class SettingsOption extends StatefulWidget {
 }
 
 class _SettingsOptionState extends State<SettingsOption> {
+  
   bool selected = false;
+
+  checkSound()async{
+    if(widget.title=="SOUNDS"){
+      var s = await getSoundLocally();
+      setState(() {
+        selected = s;
+      });
+    }
+  }
+  @override
+  void initState(){
+    super.initState();
+    checkSound();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,9 +38,15 @@ class _SettingsOptionState extends State<SettingsOption> {
           LuckiestGuyText(text: widget.title, fontSize: 25.0),
           !selected
               ? GestureDetector(
-                onTap: ()=>setState(() {
+                onTap: ()async{
+                  if(widget.title=="SOUNDS"){
+                    await toggleSoundLocally();
+                  }
+                  
+                  setState(() {
                   selected = !selected;
-                }),
+                });
+                },
                 child: Container(
                     width: 100,
                     height: 40,
@@ -47,9 +69,15 @@ class _SettingsOptionState extends State<SettingsOption> {
                   ),
               )
               : GestureDetector(
-                onTap: ()=>setState(() {
+                onTap: ()async{
+                  if(widget.title=="SOUNDS"){
+                    await toggleSoundLocally();
+                  }
+                  
+                  setState(() {
                   selected = !selected;
-                }),
+                });
+                },
                 child: Container(
                     width: 100,
                     height: 40,

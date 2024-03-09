@@ -19,9 +19,10 @@ class Mode extends StatefulWidget {
 class _ModeState extends State<Mode> {
   @override
   Widget build(BuildContext context) {
-    return const Dialog(
+    return  Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: AppColors.blue,
-        child: SizedBox(
+        child:const SizedBox(
           width: 400,
           height: 250,
           child: Column(
@@ -36,8 +37,8 @@ class _ModeState extends State<Mode> {
                   wid: NotAvailableSections(), title: "MULTIPLAYER RANDOM"),
                ChooseModeButton(
                   wid: NotAvailableSections(), title: "MULTIPLAYER PRIVATE ROOM"),
-               ChooseModeButton(
-                  wid: NotAvailableSections(), title: "MULTIPLAYER WITH CASH REWARDS")
+              //  ChooseModeButton(
+              //     wid: NotAvailableSections(), title: "MULTIPLAYER WITH CASH REWARDS")
             ],
           ),
         ));

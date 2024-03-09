@@ -11,12 +11,12 @@ class Ground extends ParallaxComponent<GreenGlideGame>
     with HasGameRef<GreenGlideGame> {
   Ground();
   Timer sceneinterval = Timer(5.0, repeat: true, autoStart: true);
-  Future<void> loadLayers() async {
+  Future<void> loadLayers(obs) async {
     final baseVelocity = Vector2(
         500.0 / pow(2, layers[gameRef.player.currentVehicle]!.length), 0);
     final velocityMultiplierDelta = Vector2(1.1, 0.0);
     parallax = await game.loadParallax(
-      layers[gameRef.player.currentVehicle]!,
+      layers[obs]!,
       baseVelocity: baseVelocity,
       velocityMultiplierDelta: velocityMultiplierDelta,
       filterQuality: FilterQuality.none,
@@ -25,9 +25,10 @@ class Ground extends ParallaxComponent<GreenGlideGame>
 
   @override
   Future<void> onLoad() async {
-     sceneinterval.start();
-   await loadLayers();
-    sceneinterval.onTick = ()=>debugPrint("hehe");
+   await loadLayers(ObstacleType.bike);
+    // sceneinterval.onTick = ()=>{
+    //      loadLayers()
+    // };
   }
 
   @override
@@ -35,9 +36,10 @@ class Ground extends ParallaxComponent<GreenGlideGame>
     parallax?.baseVelocity.x =
         obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
     // await loadLayers();
-    if (gameRef.player.currentG != gameRef.player.prevG) {
-      await loadLayers();
-    }
+    // if (gameRef.player.currentG != gameRef.player.prevG) {
+    //   await loadLayers();
+    // }
+    sceneinterval.update(dt);
     super.update(dt);
   }
 }
