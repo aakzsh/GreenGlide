@@ -36,15 +36,21 @@ class _SinglePlayerHomeState extends State<SinglePlayerHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
+      
       body: Stack(
         alignment: Alignment.center,
         children: [
           //  const SinglePlayerScore(),
           
           showMission
-              ? Center(
+              ? Container(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                decoration:const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/scenery/final.png"), fit: BoxFit.cover)),
+                child: Center(
                   child: StorylineWidget(context: context),
-                )
+                ),
+              )
               :  GameWidget(
             game: GreenGlideGame(),
             

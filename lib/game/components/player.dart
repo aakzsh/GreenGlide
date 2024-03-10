@@ -82,6 +82,7 @@ class Player extends SpriteGroupComponent<PlayerMovements>
     // currentVehicle =
     // gameRef.isHit = true;
     debugPrint("collison");
+    // gameRef.coveredDist += obstacleSpeeds[gameRef.player.currentVehicle]! / 10 * Config.obstacleInterval;
      super.onCollisionStart(intersectionPoints, other);
   }
 }

@@ -67,9 +67,11 @@ class _StorylineWidgetState extends State<StorylineWidget> {
         height: 4/5 * h,
         width: 4/5 * w,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.golden,),
-        child: Column(children: [const LuckiestGuyText(text: "MISSION DETAILS", fontSize: 30.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [const LuckiestGuyText(text: "MISSION DETAILS", fontSize: 30.0),
         Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: NormalText(text: Storylines.stories[index]["title"].toString(), fontSize: 18,),
         ),
         Padding(
