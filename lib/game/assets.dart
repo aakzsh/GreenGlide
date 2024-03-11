@@ -1,5 +1,6 @@
 
 
+import 'package:greenglide/game/collectible_type.dart';
 import 'package:greenglide/game/obstacle_type.dart';
 
 class Assets{
@@ -24,7 +25,7 @@ class CoinAssets{
 }
 
 Map<ObstacleType, String> coinAssets = {
-    // ObstacleType. coin :"coin.png";
+    // ObstacleType. coin :"coin.png",
   ObstacleType. car :"icons/carcoin.png",
   ObstacleType. bike :"icons/bikecoin.png",
   ObstacleType. bicycle :"icons/cyclecoin.png",
@@ -46,4 +47,13 @@ Map<ObstacleType, int> groups = {
   ObstacleType.skateboard: 0,
   ObstacleType.walking: 0,
   ObstacleType.taxi: 1
+};
+
+Map<CollectibleType, String> collectiblesAssets= {
+    // ObstacleType. coin :"coin.png",
+  CollectibleType.addscore :"coin.png",
+  CollectibleType.addtime :"skyline.png",
+  CollectibleType.coins :"dashatar.png",
+  CollectibleType.reducescore :"flutter.png",
+  CollectibleType.reducetime :"logo.png",
 };

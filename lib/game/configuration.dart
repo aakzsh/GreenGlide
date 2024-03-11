@@ -4,4 +4,5 @@ class Config{
   static const obstacleInterval = 3.0;
   static const fallVelocity = 200;
   static const gravity = -150.0;
+  static const collectibleInterval = 1.841;
 }

@@ -13,12 +13,29 @@ class Leaderboard extends StatefulWidget {
 
 class _LeaderboardState extends State<Leaderboard> {
   List<dynamic> scores = [];
+
+  List<Map<String, dynamic>> convertList(List<dynamic> originalList) {
+  List<Map<String, dynamic>> newList = [];
+  originalList.forEach((map) {
+    Map<String, dynamic> newMap = {};
+    map.forEach((key, value) {
+      newMap[key.toString()] = value;
+    });
+    newList.add(newMap);
+  });
+  return newList;
+}
+
+
   setLeaderboard() async {
     var leaderboard = await getLeaderboard();
+    leaderboard = convertList(leaderboard);
+    List<Map<String, dynamic>> l = leaderboard;
+    l.sort((a, b) => b["score"].compareTo(a["score"]));
     setState(() {
-      scores = leaderboard;
+      scores = l;
     });
-    print("score is "+ scores.toString());
+    print("score is $scores");
   }
 
   @override
@@ -26,6 +43,7 @@ class _LeaderboardState extends State<Leaderboard> {
     super.initState();
     setLeaderboard();
   }
+  int index  = 0;
 
   List<TableRow> buildWidgets() {
     List<TableRow> widgets = [
@@ -36,9 +54,10 @@ class _LeaderboardState extends State<Leaderboard> {
       ]),
     ];
     for (var item in scores) {
+      index++;
       widgets.add(
         TableRow(children: [
-          TableEntry(data: "1."),
+           TableEntry(data: "$index."),
           TableEntry(data: item["score"].toString()),
           TableEntry(data: "@${item["username"]}")
         ]),

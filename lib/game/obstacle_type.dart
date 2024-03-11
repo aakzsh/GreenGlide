@@ -33,3 +33,16 @@ Map<ObstacleType, double> carbonEmissions = {
   ObstacleType.skateboard: 0,
   ObstacleType.taxi: 500
 };
+
+
+Map<ObstacleType, double> vehicleScores = {
+  ObstacleType.car: -50,
+  ObstacleType.walking: 100,
+  ObstacleType.bicycle: 100,
+  ObstacleType.bike: 20,
+  ObstacleType.metro: 100,
+  ObstacleType.train: 100,
+  ObstacleType.airplane: -100,
+  ObstacleType.skateboard: 100,
+  ObstacleType.taxi: -50
+};

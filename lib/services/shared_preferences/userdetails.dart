@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greenglide/services/shared_preferences/coins.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 setuserStatsLocally(data)async{
@@ -10,6 +11,8 @@ setuserStatsLocally(data)async{
   await ins.setString("username", data["username"]);
   await ins.setInt("coins", data["coins"]);
   await ins.setBool("sound", true);
+  var currentTime = DateTime.now().toString();
+  await setDailyCheckinLocally(currentTime);
 }
 
 getUsernameLocally()async{

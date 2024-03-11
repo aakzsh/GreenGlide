@@ -10,7 +10,7 @@ toggleSoundLocally()async{
     await ins.setBool("sound", false); 
   }
   
-  print("sound is now not $data");
+  // print("sound is now not $data");
 }
 
 getSoundLocally()async{

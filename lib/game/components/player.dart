@@ -16,6 +16,7 @@ class Player extends SpriteGroupComponent<PlayerMovements>
   ObstacleType prevVehicle = ObstacleType.walking;
   int prevG = 0;
   int currentG = 0;
+  int coins = 0;
   void jump() {
     add(MoveByEffect(
       Vector2(0, Config.gravity),
@@ -58,31 +59,10 @@ class Player extends SpriteGroupComponent<PlayerMovements>
 
   @override
   void update(double dt) {
-    
     if (position.y < gameRef.size.y / 1.5) {
       position.y += Config.fallVelocity * dt;
     }
     super.update(dt);
   }
 
-  @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) async{
-         List<ObstacleType> typeenums = ObstacleType.values;
-     
-    updatePoints();
-        obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
-    int index = gameRef.ind%(typeenums.length)-1;
-    if(index==-1){
-      index = typeenums.length-1;
-    }
-     await gameRef.ground.loadLayers(typeenums[index]);
-    print("chemck "+typeenums[index].toString());
-    gameRef.isHit = true; 
-    // currentVehicle =
-    // gameRef.isHit = true;
-    debugPrint("collison");
-    // gameRef.coveredDist += obstacleSpeeds[gameRef.player.currentVehicle]! / 10 * Config.obstacleInterval;
-     super.onCollisionStart(intersectionPoints, other);
-  }
 }

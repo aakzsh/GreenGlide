@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
-import 'package:greenglide/widgets/text/normal_text.dart';
 import 'package:greenglide/widgets/text/normal_text_center.dart';
 
 class NotAvailableSections extends StatelessWidget {

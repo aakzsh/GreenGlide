@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/game/runner.dart';
-import 'package:greenglide/screens/gameplay/singleplayer/score.dart';
 import 'package:greenglide/storylines/storyline_widget.dart';
 
 class SinglePlayerHome extends StatefulWidget {

@@ -6,8 +6,9 @@ import 'package:greenglide/utils/animations/page_transition.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
 class SinglePlayerScore extends StatefulWidget {
-  const SinglePlayerScore({super.key, required this.score});
+  const SinglePlayerScore({super.key, required this.score, required this.coins});
   final int score;
+  final int coins;
 
   @override
   State<SinglePlayerScore> createState() => _SinglePlayerScoreState();
@@ -65,6 +66,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
             children: [
               const LuckiestGuyText(text: "GAME FINISHED!!", fontSize: 30.0),
               LuckiestGuyText(text: "SCORE: ${widget.score}", fontSize: 25.0),
+              LuckiestGuyText(text: "COINS COLLECTED: ${widget.coins}", fontSize: 15.0),
               MaterialButton(
                   minWidth: 150,
                   height: 40,

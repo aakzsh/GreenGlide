@@ -205,6 +205,7 @@ class _MenuHomeState extends State<MenuHome> {
                                   const CircleAvatar(
                                     backgroundColor: AppColors.golden,
                                     radius: 15,
+                                    backgroundImage: AssetImage("assets/models/dashatar.png"),
                                   ),
                                   const SizedBox(
                                     width: 10,

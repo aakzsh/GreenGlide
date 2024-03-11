@@ -28,54 +28,71 @@ class _ProfileState extends State<Profile> {
     controller = TextEditingController(text: user.toString());
   }
 
-  changeUsername()async{
-    if(controller.text==username){
-      showDialog(context: context, builder: ((context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Color.fromARGB(255, 234, 104, 71),
-        child:const SizedBox(
-          width: 300,
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [LuckiestGuyText(text: "ALERT!", fontSize: 25.0),
-            NormalText(text: "The username is not changed yet!", fontSize: 15)
-            ],
-          ),
-        ))));
-    }
-    else{
+  changeUsername() async {
+    if (controller.text == username) {
+      showDialog(
+          context: context,
+          builder: ((context) => Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              backgroundColor: const Color.fromARGB(255, 234, 104, 71),
+              child: const SizedBox(
+                width: 300,
+                height: 200,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LuckiestGuyText(text: "ALERT!", fontSize: 25.0),
+                    NormalText(
+                        text: "The username is not changed yet!", fontSize: 15)
+                  ],
+                ),
+              ))));
+    } else {
       var usernameExists = await checkUsernameExists(controller.text);
-      if(usernameExists){
-        showDialog(context: context, builder: ((context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Color.fromARGB(255, 234, 104, 71),
-        child:const SizedBox(
-          width: 300,
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [LuckiestGuyText(text: "ERROR!", fontSize: 25.0),
-            NormalTextCenter(text: "This username already exists, try another one!", fontSize: 15)
-            ],
-          ),
-        ))));
-      }
-      else{
+      if (usernameExists) {
+        showDialog(
+            context: context,
+            builder: ((context) => Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                backgroundColor: const Color.fromARGB(255, 234, 104, 71),
+                child: const SizedBox(
+                  width: 300,
+                  height: 200,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LuckiestGuyText(text: "ERROR!", fontSize: 25.0),
+                      NormalTextCenter(
+                          text:
+                              "This username already exists, try another one!",
+                          fontSize: 15)
+                    ],
+                  ),
+                ))));
+      } else {
         await editUsername(controller.text, username);
-        showDialog(context: context, builder: ((context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Color.fromARGB(255, 74, 234, 71),
-        child:const SizedBox(
-          width: 300,
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [LuckiestGuyText(text: "SUCCESS!", fontSize: 25.0),
-            NormalTextCenter(text: "Username updated successfully, reload app to reflect changes!", fontSize: 15)
-            ],
-          ),
-        ))));
+        showDialog(
+            context: context,
+            builder: ((context) => Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                backgroundColor: const Color.fromARGB(255, 74, 234, 71),
+                child: const SizedBox(
+                  width: 300,
+                  height: 200,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LuckiestGuyText(text: "SUCCESS!", fontSize: 25.0),
+                      NormalTextCenter(
+                          text:
+                              "Username updated successfully, reload app to reflect changes!",
+                          fontSize: 15)
+                    ],
+                  ),
+                ))));
       }
     }
   }
@@ -91,8 +108,7 @@ class _ProfileState extends State<Profile> {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
-
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Container(
           width: double.maxFinite,
           height: h,
@@ -113,8 +129,10 @@ class _ProfileState extends State<Profile> {
                     child: Row(
                       children: [
                         GestureDetector(
-                            onTap: () =>  Navigator.pushAndRemoveUntil(
-                                context, CustomPageRoute(const MenuHome()), (route) => false),
+                            onTap: () => Navigator.pushAndRemoveUntil(
+                                context,
+                                CustomPageRoute(const MenuHome()),
+                                (route) => false),
                             child: Image.asset(
                               "assets/icons/back.png",
                               scale: 4,
@@ -212,6 +230,8 @@ class _ProfileState extends State<Profile> {
                                             const CircleAvatar(
                                               backgroundColor: AppColors.golden,
                                               radius: 15,
+                                              backgroundImage: AssetImage(
+                                                  "assets/models/dashatar.png"),
                                             ),
                                             const SizedBox(
                                               width: 10,
@@ -220,11 +240,14 @@ class _ProfileState extends State<Profile> {
                                                 ? SizedBox(
                                                     width: 100,
                                                     child: Padding(
-                                                      padding: EdgeInsets.only(bottom: 3),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              bottom: 3),
                                                       child: TextFormField(
                                                         controller: controller,
                                                         textAlignVertical:
-                                                            TextAlignVertical.top,
+                                                            TextAlignVertical
+                                                                .top,
                                                         style: const TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 15),
@@ -240,9 +263,9 @@ class _ProfileState extends State<Profile> {
                                           ],
                                         ),
                                         InkWell(
-                                          onTap: ()async {
+                                          onTap: () async {
                                             controller.text = username;
-                                            if(editingMode){
+                                            if (editingMode) {
                                               await setUsername();
                                             }
                                             setState(() {
@@ -264,7 +287,7 @@ class _ProfileState extends State<Profile> {
                                     width: 10,
                                   ),
                                   InkWell(
-                                    onTap: ()async{
+                                    onTap: () async {
                                       await changeUsername();
                                     },
                                     child: Image.asset(

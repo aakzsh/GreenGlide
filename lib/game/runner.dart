@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:greenglide/game/components/background.dart';
+import 'package:greenglide/game/components/collectible_group.dart';
 import 'package:greenglide/game/components/ground.dart';
 import 'package:greenglide/game/components/obstacle_group.dart';
 import 'package:greenglide/game/configuration.dart';
@@ -18,7 +18,8 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   late Player player;
   late Ground ground;
   late ObstacleGroup obsGroup;
-  int time = 10;
+  late CollectibleGroup collGroup;
+  int time = 100;
   late TextComponent score;
   late TextComponent progress;
   late TextComponent remainingTime;
@@ -28,24 +29,33 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   int progressVal = 0;
   double speed = 100.0;
   int ind = 0;
+  int collInd = 0;
   bool isHit = false;
+
+  bool collisHit = false;
   Timer interval = Timer(Config.obstacleInterval, repeat: true);
+  Timer collectibleinterval = Timer(Config.collectibleInterval, repeat: true);
+
+  
   Timer remainingT = Timer(1.0, repeat: true);
   Timer gameStart = Timer(2, repeat: false);
   @override
   Future<void> onLoad() async {
     addAll([
-      // Background(),
-      // Ground(),
       ground = Ground(),
       player = Player(),
       obsGroup = ObstacleGroup(),
+      collGroup = CollectibleGroup(),
       score = buildScore(),
       progress = buildProgress(),
       remainingTime = buildRemainingTime(),
     ]);
 
-    interval.onTick = () => {add(ObstacleGroup())};
+    interval.onTick = () => {
+      print("lol"),
+      add(ObstacleGroup())
+    };
+    collectibleinterval.onTick = () => add(CollectibleGroup());
     remainingT.onTick = () => {updateTime(), updateCoveredDist()};
   }
 
@@ -54,19 +64,23 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
-          CustomPageRoute(SinglePlayerScore(score: player.points)),
+          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins)),
           (route) => false);
     }
     time--;
   }
-
+  bool bonus = true;
   void updateCoveredDist() {
     coveredDist += obstacleSpeeds[player.currentVehicle]! / 10;
+    if(coveredDist - totalDist < 1000 && bonus){
+      player.points += (100-time)*100;
+      bonus = false;
+    }
     if (coveredDist >= totalDist) {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
-          CustomPageRoute(SinglePlayerScore(score: player.points)),
+          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins,)),
           (route) => false);
     }
   }
@@ -107,10 +121,11 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
     super.update(dt);
     interval.update(dt);
     remainingT.update(dt);
+    collectibleinterval.update(dt);
     score.text = "Score: ${player.points}";
     progressVal = ((coveredDist / totalDist) * 100).toInt();
     progress.text =
-        "${progressVal}% COMPLETED\nSPEED: ${obstacleSpeeds[player.currentVehicle]! / 10}";
+        "$progressVal% COMPLETED\nSPEED: ${obstacleSpeeds[player.currentVehicle]! / 10}";
     remainingTime.text = "$time\nTIME REMAINING";
   }
 }

@@ -6,7 +6,7 @@ import 'package:greenglide/game/obstacle_position.dart';
 import 'package:greenglide/game/obstacle_type.dart';
 import 'package:greenglide/game/runner.dart';
 
-class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>{
+class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>, CollisionCallbacks{
   Obstacle({required this.obstaclePosition, required this.type});
 
   final ObstaclePosition obstaclePosition;
@@ -31,4 +31,24 @@ class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>{
     }
     add(CircleHitbox());
   }
+
+
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) async {
+    List<ObstacleType> typeenums = ObstacleType.values;
+    gameRef.player.updatePoints();
+    obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
+    int index = gameRef.ind % (typeenums.length) - 1;
+    if (index == -1) {
+      index = typeenums.length - 1;
+    }
+    await gameRef.ground.loadLayers(typeenums[index]);
+    // print("chemck ${typeenums[index]}");
+    gameRef.isHit = true;
+    gameRef.player.points += vehicleScores[gameRef.player.currentVehicle]!.toInt();
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
  }
