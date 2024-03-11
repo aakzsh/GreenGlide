@@ -20,6 +20,7 @@ dependencies:
   firebase_auth: ^4.17.4
   cloud_firestore: ^4.15.5
   shared_preferences: ^2.2.2
+  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,7 @@ flutter:
     - assets/models/
     - assets/images/scenery/
     - assets/images/icons/
+    - assets/audio/
 
   fonts:
     - family: Lexend

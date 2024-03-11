@@ -12,3 +12,13 @@ dailyCheckin()async{
   await updateCoinsLocally(coins+100);
   return "";
 }
+
+updateCoins(val)async{
+  var ins = await SharedPreferences.getInstance();
+  int? coins =  ins.getInt("coins");
+  await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).update({
+    "coins": coins!+val
+  });
+  await updateCoinsLocally(coins+val);
+  return "";
+}

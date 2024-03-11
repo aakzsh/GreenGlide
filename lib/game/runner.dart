@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/game/components/collectible_group.dart';
 import 'package:greenglide/game/components/ground.dart';
@@ -114,6 +115,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   void onTap() {
     super.onTap();
     player.jump();
+    FlameAudio.play("test.wav");
   }
 
   @override

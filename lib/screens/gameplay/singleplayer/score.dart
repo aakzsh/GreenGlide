@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/menu/menu_home.dart';
 import 'package:greenglide/services/firebase/addToLeaderboard.dart';
+import 'package:greenglide/services/firebase/dailycheckin.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
@@ -25,6 +26,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
       vsync: this,
     )..repeat();
     addToLeaderboard(widget.score);
+    updateCoins(widget.coins);
     super.initState();
   }
 

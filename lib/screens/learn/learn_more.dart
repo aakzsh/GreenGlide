@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/learn/global_citizen.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LearnMore extends StatefulWidget {
   const LearnMore({super.key});
@@ -11,6 +12,15 @@ class LearnMore extends StatefulWidget {
 }
 
 class _LearnMoreState extends State<LearnMore> {
+  final Uri _url = Uri.parse(
+      'https://www.youtube.com/playlist?list=PLsBiWSQW2UI2Z4SY8LtOsPIKboC4EVjTr');
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +76,8 @@ class _LearnMoreState extends State<LearnMore> {
                     ),
                     const Spacer(),
                     GestureDetector(
-                      onTap: ()=>Navigator.push(context, CustomPageRoute(const GlobalCitizen())),
+                      onTap: () => Navigator.push(
+                          context, CustomPageRoute(const GlobalCitizen())),
                       child: Image.asset(
                         "assets/icons/i.png",
                         height: 40,
@@ -202,7 +213,23 @@ class _LearnMoreState extends State<LearnMore> {
                 height: 5,
               ),
               const Text(
-                  "The best way of increasing your score in Green Glide is to prefer sustainable options. Afterall, we've only got one earth. The storyline that you're given with, try to choose travel options that best suit your preferences, while supporting the environmental cause. Suppose you can commute to your office via a personal cab and metro, both of them taking approximately the same time. You should ideally choose the metro in that case and reduce your carbon footprint. Lesser carbon footprint = more green glide points!")
+                  "The best way of increasing your score in Green Glide is to prefer sustainable options. Afterall, we've only got one earth. The storyline that you're given with, try to choose travel options that best suit your preferences, while supporting the environmental cause. Suppose you can commute to your office via a personal cab and metro, both of them taking approximately the same time. You should ideally choose the metro in that case and reduce your carbon footprint. Lesser carbon footprint = more green glide points!"),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                const  Text("See more at "),
+                  InkWell(
+                      onTap: () async {
+                        await _launchUrl();
+                      },
+                      child: const Text(
+                        "YouTube Playlist",
+                        style: TextStyle(color: Colors.red),
+                      ))
+                ],
+              )
             ],
           ),
         ),
