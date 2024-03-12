@@ -149,7 +149,7 @@ class _MenuHomeState extends State<MenuHome> {
                           InkWell(
                             onTap: () {
                               // showAboutDialog(context: context);
-                               if(audio){ FlameAudio.play("tap.wav");}
+                               if(audio){ FlameAudio.play("button.wav");}
                               showDialog(
                                   context: context,
                                   builder: ((context) => const Settings()));
@@ -164,7 +164,7 @@ class _MenuHomeState extends State<MenuHome> {
                           ),
                           InkWell(
                             onTap: () {
-                               if(audio){ FlameAudio.play("tap.wav");}
+                               if(audio){ FlameAudio.play("button.wav");}
                               Navigator.push(
                                   context, CustomPageRoute(Wallet()));
                             },
@@ -190,7 +190,7 @@ class _MenuHomeState extends State<MenuHome> {
                             padding: const EdgeInsets.all(10),
                             child: GestureDetector(
                               onTap: ()  {
-                               if(audio){ FlameAudio.play("tap.wav");}
+                               if(audio){ FlameAudio.play("button.wav");}
                                 Navigator.push(context,
                                     CustomPageRoute(const Leaderboard()));
                               },
@@ -202,7 +202,7 @@ class _MenuHomeState extends State<MenuHome> {
                           ),
                           GestureDetector(
                             onTap: () {
-                               if(audio){ FlameAudio.play("tap.wav");}
+                               if(audio){ FlameAudio.play("button.wav");}
                             Navigator.push(
                                 context, CustomPageRoute(const Profile()));
                             },
@@ -256,7 +256,7 @@ class _MenuHomeState extends State<MenuHome> {
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
                           onTap: () {
-                             if(audio){ FlameAudio.play("tap.wav");}
+                             if(audio){ FlameAudio.play("button.wav");}
                             Navigator.of(context)
                                 .push(CustomPageRoute(const LearnMore()));
                           },

@@ -11,6 +11,7 @@ setuserStatsLocally(data)async{
   await ins.setString("username", data["username"]);
   await ins.setInt("coins", data["coins"]);
   await ins.setBool("sound", true);
+  await ins.setBool("japanese", false);
   var currentTime = DateTime.now().toString();
   await setDailyCheckinLocally(currentTime);
 }

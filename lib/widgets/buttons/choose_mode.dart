@@ -21,7 +21,7 @@ class _ChooseModeButtonState extends State<ChooseModeButton> {
         padding: const EdgeInsets.all(5),
         child: InkWell(
             onTap: () {
-               if(widget.sound){ FlameAudio.play("tap.wav");}
+               if(widget.sound){ FlameAudio.play("button.wav");}
               Navigator.of(context).push(CustomPageRoute(widget.wid));
             },
             child: Stack(

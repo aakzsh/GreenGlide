@@ -22,8 +22,7 @@ class _SettingsState extends State<Settings> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [LuckiestGuyText(text: "SETTINGS", fontSize: 25.0),
             SettingsOption(title: "SOUNDS"),
-            SettingsOption(title: "ONLINE MODE"),
-            SettingsOption(title: "MONEY MODE")
+            SettingsOption(title: "JAPANESE"),
             ],
           ),
         ));

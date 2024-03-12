@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/services/shared_preferences/japanese.dart';
 import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
@@ -18,6 +19,12 @@ class _SettingsOptionState extends State<SettingsOption> {
   checkSound()async{
     if(widget.title=="SOUNDS"){
       var s = await getSoundLocally();
+      setState(() {
+        selected = s;
+      });
+    }
+    else if(widget.title=="JAPANESE"){
+      var s = await getJapaneseLocally();
       setState(() {
         selected = s;
       });
@@ -41,6 +48,9 @@ class _SettingsOptionState extends State<SettingsOption> {
                 onTap: ()async{
                   if(widget.title=="SOUNDS"){
                     await toggleSoundLocally();
+                  }
+                  else{
+                    await toggleJapaneseLocally();
                   }
                   
                   setState(() {
@@ -72,6 +82,9 @@ class _SettingsOptionState extends State<SettingsOption> {
                 onTap: ()async{
                   if(widget.title=="SOUNDS"){
                     await toggleSoundLocally();
+                  }
+                  else{
+                    await toggleJapaneseLocally();
                   }
                   
                   setState(() {
