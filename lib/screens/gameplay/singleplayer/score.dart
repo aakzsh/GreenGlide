@@ -125,7 +125,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                             borderRadius: BorderRadius.circular(10)),
                         onPressed: () async {
                           // await fetchData();
-                          if(widget.sound){ FlameAudio.play("test.wav");}
+                          if(widget.sound){ FlameAudio.play("tap.wav");}
                           showDialog(
                               context: context,
                               builder: ((context) => Dialog(
@@ -196,7 +196,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                       side: const BorderSide(width: 2, color: Colors.black),
                       borderRadius: BorderRadius.circular(10)),
                   onPressed: () {
-                     if(widget.sound){ FlameAudio.play("test.wav");}
+                     if(widget.sound){ FlameAudio.play("tap.wav");}
                     Navigator.pushAndRemoveUntil(context,
                         CustomPageRoute(const MenuHome()), (route) => false);
                   },

@@ -18,7 +18,7 @@ class _GreenGlideIntroState extends State<GreenGlideIntro>
   playAudio() async {
     var x = await getSoundLocally();
     if (x) {
-      FlameAudio.play("test.wav");
+      FlameAudio.play("greenglide.wav");
     }
   }
 

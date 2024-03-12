@@ -116,7 +116,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   void onTap() {
     super.onTap();
     player.jump();
-    FlameAudio.play("test.wav");
+    FlameAudio.play("jump.wav");
   }
 
   @override

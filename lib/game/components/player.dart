@@ -38,21 +38,28 @@ class Player extends SpriteGroupComponent<PlayerMovements>
   @override
   Future<void> onLoad() async {
     final playerrun = await gameRef.loadSprite(Assets.playerrun);
-    final playerplane =  await gameRef.loadSprite("characterplane.png");
+    final playerplane =  await gameRef.loadSprite("characterplanee.png");
+    final playercar =  await gameRef.loadSprite("charactercar.png");
+    final playerbike =  await gameRef.loadSprite("characterbike.png");
+    final playercycle =  await gameRef.loadSprite("charactercycle.png");
+    final playermetro =  await gameRef.loadSprite("charactermetro.png");
+    final playertrain =  await gameRef.loadSprite("charactertrain.png");
+    final playerskateboard =  await gameRef.loadSprite("characterskateboard.png");
+    final playertaxi =  await gameRef.loadSprite("charactertaxi.png");
 
     size = Vector2(120, 100);
     position = Vector2(50, gameRef.size.y / 1.5);
     current = PlayerMovements.walking;
     sprites = {
       PlayerMovements.walking: playerrun,
-      PlayerMovements.car: playerrun,
-      PlayerMovements.bike: playerplane,
-      PlayerMovements.bicycle: playerrun,
-      PlayerMovements.metro: playerplane,
-      PlayerMovements.train: playerrun,
+      PlayerMovements.car: playercar,
+      PlayerMovements.bike: playerbike,
+      PlayerMovements.bicycle: playercycle,
+      PlayerMovements.metro: playermetro,
+      PlayerMovements.train: playertrain,
       PlayerMovements.airplane: playerplane,
-      PlayerMovements.skateboard: playerrun,
-      PlayerMovements.taxi: playerrun,
+      PlayerMovements.skateboard: playerskateboard,
+      PlayerMovements.taxi: playertaxi,
     };
 
     add(CircleHitbox());

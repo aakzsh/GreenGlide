@@ -43,7 +43,7 @@ class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>, Collisio
     
     print(gameRef.player.currentVehicle);
      if(gameRef.sound){
-      FlameAudio.play("test.wav");
+      FlameAudio.play("hit.wav");
     }
     gameRef.player.updatePoints();
     // obstacleSpeeds[gameRef.player.currentVehicle]! / 10;

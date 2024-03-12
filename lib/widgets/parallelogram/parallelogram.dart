@@ -24,7 +24,7 @@ class Parallelogram extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-         if(sound){ FlameAudio.play("test.wav");}
+         if(sound){ FlameAudio.play("tap.wav");}
         showDialog(context: context, builder: ((context) =>  Mode(sound: sound)));},
       child: Stack(
         alignment: Alignment.center,

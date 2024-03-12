@@ -26,15 +26,15 @@ class Collectible extends SpriteComponent
     switch (obstaclePosition) {
       case CollectiblePosition.middle:
         position.y = gameRef.size.y / 1.5;
-        sprite = Sprite(obstacle, srcSize:  Vector2(66, 32));
+        sprite = Sprite(obstacle, srcSize: Vector2(66, 32));
         break;
       case CollectiblePosition.up:
         position.y = gameRef.size.y / 1.5 - 100;
-        sprite = Sprite(obstacle, srcSize:  Vector2(66, 32));
+        sprite = Sprite(obstacle, srcSize: Vector2(66, 32));
         break;
       case CollectiblePosition.veryup:
         position.y = gameRef.size.y / 1.5 - 200;
-        sprite = Sprite(obstacle, srcSize:  Vector2(66, 32));
+        sprite = Sprite(obstacle, srcSize: Vector2(66, 32));
     }
     add(CircleHitbox());
   }
@@ -43,24 +43,37 @@ class Collectible extends SpriteComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) async {
     log(type.toString());
-    if(gameRef.sound){
-      FlameAudio.play("test.wav");
-    }
+
     switch (type) {
       case CollectibleType.addscore:
-          gameRef.player.points += 50;
+       if (gameRef.sound) {
+          FlameAudio.play("addbonus.wav");
+        }
+        gameRef.player.points += 50;
         break;
       case CollectibleType.addtime:
-          gameRef.time += 5;
-          break;
+      if (gameRef.sound) {
+          FlameAudio.play("addbonus.wav");
+        }
+        gameRef.time += 5;
+        break;
       case CollectibleType.coins:
-          gameRef.player.coins ++;
-          break;
+        if (gameRef.sound) {
+          FlameAudio.play("coincollect.wav");
+        }
+        gameRef.player.coins++;
+        break;
       case CollectibleType.reducescore:
-          gameRef.player.points -= 50;
-          break;
+      if (gameRef.sound) {
+          FlameAudio.play("reducebonus.wav");
+        }
+        gameRef.player.points -= 50;
+        break;
       case CollectibleType.reducetime:
-          gameRef.time -= 5;
+      if (gameRef.sound) {
+          FlameAudio.play("reducebonus.wav");
+        }
+        gameRef.time -= 5;
     }
     gameRef.collisHit = true;
 
