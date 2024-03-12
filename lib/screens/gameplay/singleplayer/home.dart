@@ -49,7 +49,7 @@ class _SinglePlayerHomeState extends State<SinglePlayerHome> {
                 width: double.maxFinite,
                 decoration:const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/scenery/final.png"), fit: BoxFit.cover)),
                 child: Center(
-                  child: StorylineWidget(context: context),
+                  child: StorylineWidget(context: context, lang: widget.lang,),
                 ),
               )
               :  GameWidget(

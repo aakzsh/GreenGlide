@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/storylines/data.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 import 'package:greenglide/widgets/text/normal_text.dart';
 import 'dart:math';
 
 
 class StorylineWidget extends StatefulWidget {
-  const StorylineWidget({super.key, required this.context});
+  const StorylineWidget({super.key, required this.context, required this.lang});
+  final String lang;
   final BuildContext context;
 
   @override
@@ -69,10 +71,10 @@ class _StorylineWidgetState extends State<StorylineWidget> {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.golden,),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [const LuckiestGuyText(text: "MISSION DETAILS", fontSize: 30.0),
+          children: [ LuckiestGuyText(text: Helper.missionDetails[widget.lang]!, fontSize: 30.0),
         Padding(
           padding: const EdgeInsets.all(20),
-          child: NormalText(text: Storylines.stories[index]["title"].toString(), fontSize: 18,),
+          child: NormalText(text: widget.lang=="en"?Storylines.stories[index]["title"].toString():Helper.missionDesc[widget.lang]!, fontSize: 18,),
         ),
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 0.05*w),

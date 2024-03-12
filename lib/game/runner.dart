@@ -11,6 +11,7 @@ import 'package:greenglide/game/obstacle_type.dart';
 import 'package:greenglide/models/global_key.dart';
 import 'package:greenglide/screens/gameplay/singleplayer/score.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import "components/player.dart";
 import '../widgets/text/luckiest_guy_textstyle.dart';
 
@@ -63,7 +64,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   }
 
   void updateTime() {
-    if (time == 0) {
+    if (time < 1) {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
@@ -90,7 +91,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
 
   TextComponent buildScore() {
     return TextComponent(
-        text: "POINTS: 0",
+        text: "${Helper.score[lang]}: 0",
         position: Vector2(size.x / 2, size.y / 2 * 0.2),
         anchor: Anchor.center,
         textRenderer: TextPaint(style: luckiestGuyTextStyle(30.0)));
@@ -98,7 +99,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
 
   TextComponent buildRemainingTime() {
     return TextComponent(
-        text: "$time\nTIME REMAINING",
+        text: "$time\n${Helper.timeRemaining[lang]}",
         position: Vector2(0.02 * size.x, size.y / 2 * 0.2),
         anchor: Anchor.centerLeft,
         textRenderer: TextPaint(style: luckiestGuyTextStyle(16.0)));
@@ -107,7 +108,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   TextComponent buildProgress() {
     return TextComponent(
         text:
-            "$progressVal% COMPLETED\nSPEED: ${obstacleSpeeds[player.currentVehicle]! / 10}",
+            "$progressVal% ${Helper.completed[lang]}\n${Helper.speed[lang]}: ${obstacleSpeeds[player.currentVehicle]! / 10}",
         position: Vector2(0.98 * size.x, size.y / 2 * 0.2),
         anchor: Anchor.centerRight,
         textRenderer: TextPaint(style: luckiestGuyTextStyle(16.0)));
@@ -126,10 +127,10 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
     interval.update(dt);
     remainingT.update(dt);
     collectibleinterval.update(dt);
-    score.text = "Score: ${player.points}";
+    score.text = "${Helper.score[lang]}: ${player.points}";
     progressVal = ((coveredDist / totalDist) * 100).toInt();
     progress.text =
-        "$progressVal% COMPLETED\nSPEED: ${obstacleSpeeds[player.currentVehicle]! / 10}";
-    remainingTime.text = "$time\nTIME REMAINING";
+        "$progressVal% ${Helper.completed[lang]}\n${Helper.speed[lang]}: ${obstacleSpeeds[player.currentVehicle]! / 10}";
+    remainingTime.text = "$time\n${Helper.timeRemaining[lang]}";
   }
 }

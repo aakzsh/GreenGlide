@@ -154,7 +154,7 @@ class _MenuHomeState extends State<MenuHome> {
                                if(audio){ FlameAudio.play("button.wav");}
                               showDialog(
                                   context: context,
-                                  builder: ((context) =>  Settings(lang: widget.lang)));
+                                  builder: ((context) =>  Settings(lang: widget.lang, )));
                             },
                             child: Image.asset(
                               "assets/icons/settings.png",

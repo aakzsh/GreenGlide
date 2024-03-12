@@ -42,8 +42,8 @@ class Player extends SpriteGroupComponent<PlayerMovements>
     final playercar =  await gameRef.loadSprite("charactercar.png");
     final playerbike =  await gameRef.loadSprite("characterbike.png");
     final playercycle =  await gameRef.loadSprite("charactercycle.png");
-    final playermetro =  await gameRef.loadSprite("charactermetro.png");
-    final playertrain =  await gameRef.loadSprite("charactertrain.png");
+    final playermetro =  await gameRef.loadSprite("charmetro.png");
+    final playertrain =  await gameRef.loadSprite("chartrain.png");
     final playerskateboard =  await gameRef.loadSprite("characterskateboard.png");
     final playertaxi =  await gameRef.loadSprite("charactertaxi.png");
 

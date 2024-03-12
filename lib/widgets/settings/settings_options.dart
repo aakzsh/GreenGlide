@@ -17,13 +17,13 @@ class _SettingsOptionState extends State<SettingsOption> {
   bool selected = false;
 
   checkSound()async{
-    if(widget.title=="SOUNDS"){
+    if(widget.title=="SOUNDS" || widget.title=="音"){
       var s = await getSoundLocally();
       setState(() {
         selected = s;
       });
     }
-    else if(widget.title=="JAPANESE"){
+    else if(widget.title=="JAPANESE" || widget.title=="日本語"){
       var s = await getJapaneseLocally();
       setState(() {
         selected = s;
@@ -46,7 +46,7 @@ class _SettingsOptionState extends State<SettingsOption> {
           !selected
               ? GestureDetector(
                 onTap: ()async{
-                  if(widget.title=="SOUNDS"){
+                  if(widget.title=="SOUNDS" || widget.title=="音"){
                     await toggleSoundLocally();
                   }
                   else{
@@ -80,7 +80,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               )
               : GestureDetector(
                 onTap: ()async{
-                  if(widget.title=="SOUNDS"){
+                  if(widget.title=="SOUNDS" || widget.title=="音"){
                     await toggleSoundLocally();
                   }
                   else{

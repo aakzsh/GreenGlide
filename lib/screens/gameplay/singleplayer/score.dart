@@ -7,6 +7,7 @@ import 'package:greenglide/services/firebase/addCardtoFirebase.dart';
 import 'package:greenglide/services/firebase/addToLeaderboard.dart';
 import 'package:greenglide/services/firebase/dailycheckin.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 import 'package:greenglide/widgets/text/normal_text_center.dart';
 
@@ -111,10 +112,10 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const LuckiestGuyText(text: "OFFER CARD", fontSize: 20),
+                    LuckiestGuyText(text: Helper.offercard[widget.lang]!, fontSize: 20),
                     NormalTextCenter(
                         text:
-                            "CONGRATS!! You've earned $offer% off card, which you can use at sustainability stores curated by us",
+                            "${Helper.offerCardDisclaimer1[widget.lang]}$offer${Helper.offerCardDisclaimer2[widget.lang]}",
                         fontSize: 12.0),
                     MaterialButton(
                         minWidth: 100,
@@ -139,7 +140,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                                           MainAxisAlignment.center,
                                       children: [
                                         LuckiestGuyText(
-                                            text: "CLAIM OFFER",
+                                            text: Helper.claimOffer[widget.lang]!,
                                             fontSize: 25.0),
                                         SizedBox(
                                           width: 200,
@@ -147,7 +148,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                                             controller: _textController,
                                             decoration: InputDecoration(
                                                 hintText:
-                                                    "Enter Email Address"),
+                                                    Helper.addEmail[widget.lang]),
                                           ),
                                         ),
                                         MaterialButton(
@@ -168,15 +169,15 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                                                    Navigator.pushAndRemoveUntil(context,
                         CustomPageRoute( MenuHome(lang: widget.lang,)), (route) => false);
                                             },
-                                            child: const LuckiestGuyText(
-                                                text: "ADD TO GOOGLE WALLET",
+                                            child:  LuckiestGuyText(
+                                                text: Helper.addToGoogleWallet[widget.lang]!,
                                                 fontSize: 20.0))
                                       ],
                                     ),
                                   ))));
                         },
-                        child: const LuckiestGuyText(
-                            text: "CLAIM", fontSize: 14.0))
+                        child:  LuckiestGuyText(
+                            text: Helper.claim[widget.lang]!, fontSize: 14.0))
                   ],
                 ),
               ),
@@ -185,10 +186,10 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const LuckiestGuyText(text: "GAME FINISHED!!", fontSize: 30.0),
-              LuckiestGuyText(text: "SCORE: ${widget.score}", fontSize: 25.0),
+               LuckiestGuyText(text: Helper.gameFinished[widget.lang]!, fontSize: 25.0),
+              LuckiestGuyText(text: "${Helper.score[widget.lang]}: ${widget.score}", fontSize: 25.0),
               LuckiestGuyText(
-                  text: "COINS COLLECTED: ${widget.coins}", fontSize: 15.0),
+                  text: "${Helper.coinsCollected[widget.lang]}: ${widget.coins}", fontSize: 15.0),
               MaterialButton(
                   minWidth: 150,
                   height: 40,
@@ -201,7 +202,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                     Navigator.pushAndRemoveUntil(context,
                         CustomPageRoute( MenuHome(lang: widget.lang,)), (route) => false);
                   },
-                  child: const LuckiestGuyText(text: "HOME", fontSize: 20.0))
+                  child:  LuckiestGuyText(text:Helper.home[widget.lang]!, fontSize: 20.0))
             ],
           )
         ],

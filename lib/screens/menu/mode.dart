@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/gameplay/singleplayer/home.dart';
 import 'package:greenglide/screens/menu/not_available_sections.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/buttons/choose_mode.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
@@ -25,19 +26,19 @@ class _ModeState extends State<Mode> {
           height: 250,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-               LuckiestGuyText(text: "CHOOSE MODE", fontSize: 25.0),
+            children: [ 
+               LuckiestGuyText(text: Helper.chooseMode[widget.lang]!, fontSize: 25.0),
               // ChooseModeButton(wid: SinglePlayerHome(), title: "SINGLE PLAYER"),
               ChooseModeButton(
                 sound: widget.sound,
                   wid: SinglePlayerHome(sound: widget.sound, lang: widget.lang),
-                  title: "SINGLE PLAYER"),
+                  title:Helper.singlePlayer[widget.lang]!),
                ChooseModeButton(
                   sound: widget.sound,
-                  wid: NotAvailableSections(), title: "MULTIPLAYER RANDOM"),
+                  wid: NotAvailableSections(), title: Helper.multiplayerRandom[widget.lang]!),
                ChooseModeButton(
                   sound: widget.sound,
-                  wid: NotAvailableSections(), title: "MULTIPLAYER PRIVATE ROOM"),
+                  wid: NotAvailableSections(), title: Helper.multiplayerPrivate[widget.lang]!),
               //  ChooseModeButton(
               //     wid: NotAvailableSections(), title: "MULTIPLAYER WITH CASH REWARDS")
             ],
