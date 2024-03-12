@@ -1,4 +1,5 @@
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/screens/menu/mode.dart';
 import 'package:greenglide/widgets/parallelogram/custom_painter.dart';
@@ -9,18 +10,22 @@ class Parallelogram extends StatelessWidget {
   final double height;
   final double angle;
   final Color color;
+  final bool sound;
 
   const Parallelogram({super.key, 
     required this.width,
     required this.height,
     required this.angle,
+    required this.sound,
     this.color = Colors.black,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){showDialog(context: context, builder: ((context) => const Mode()));},
+      onTap: (){
+         if(sound){ FlameAudio.play("test.wav");}
+        showDialog(context: context, builder: ((context) =>  Mode(sound: sound)));},
       child: Stack(
         alignment: Alignment.center,
         children: [

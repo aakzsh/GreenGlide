@@ -15,7 +15,8 @@ import "components/player.dart";
 import '../widgets/text/luckiest_guy_textstyle.dart';
 
 class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
-  GreenGlideGame();
+  GreenGlideGame({required this.sound});
+  final bool sound;
   late Player player;
   late Ground ground;
   late ObstacleGroup obsGroup;
@@ -44,18 +45,18 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
   Future<void> onLoad() async {
     addAll([
       ground = Ground(),
-      player = Player(),
       obsGroup = ObstacleGroup(),
       collGroup = CollectibleGroup(),
+      player = Player(),
       score = buildScore(),
       progress = buildProgress(),
       remainingTime = buildRemainingTime(),
+      
     ]);
 
-    interval.onTick = () => {
-      print("lol"),
-      add(ObstacleGroup())
-    };
+    interval.onTick = () =>
+      add(ObstacleGroup());
+    
     collectibleinterval.onTick = () => add(CollectibleGroup());
     remainingT.onTick = () => {updateTime(), updateCoveredDist()};
   }
@@ -65,7 +66,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
-          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins)),
+          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins, sound: sound)),
           (route) => false);
     }
     time--;
@@ -81,7 +82,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
-          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins,)),
+          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins, sound: sound)),
           (route) => false);
     }
   }

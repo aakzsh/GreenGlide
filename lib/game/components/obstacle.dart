@@ -1,6 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:greenglide/game/assets.dart';
 import 'package:greenglide/game/obstacle_position.dart';
 import 'package:greenglide/game/obstacle_type.dart';
@@ -38,8 +39,14 @@ class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>, Collisio
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) async {
     List<ObstacleType> typeenums = ObstacleType.values;
+
+    
+    print(gameRef.player.currentVehicle);
+     if(gameRef.sound){
+      FlameAudio.play("test.wav");
+    }
     gameRef.player.updatePoints();
-    obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
+    // obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
     int index = gameRef.ind % (typeenums.length) - 1;
     if (index == -1) {
       index = typeenums.length - 1;
@@ -48,6 +55,8 @@ class Obstacle extends SpriteComponent with HasGameRef<GreenGlideGame>, Collisio
     // print("chemck ${typeenums[index]}");
     gameRef.isHit = true;
     gameRef.player.points += vehicleScores[gameRef.player.currentVehicle]!.toInt();
+    gameRef.player.current = playerMovements[typeenums[index]]!;
+    // position.x -= obstacleSpeeds[gameRef.player.currentVehicle]! * dt / 3;
     super.onCollisionStart(intersectionPoints, other);
   }
 

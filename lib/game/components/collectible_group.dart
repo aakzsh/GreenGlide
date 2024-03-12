@@ -35,7 +35,7 @@ class CollectibleGroup extends PositionComponent with HasGameRef<GreenGlideGame>
     // print("lol ${gameRef.ind}");
     addAll([Collectible(obstaclePosition: randomEnumValue, type: randomType)]);
   }
-
+  int check = 0;
   @override
   void update(double dt) async {
     if (gameRef.collisHit) {
@@ -45,7 +45,17 @@ class CollectibleGroup extends PositionComponent with HasGameRef<GreenGlideGame>
       // TODO: some sort of mismatch is here
       print("current vehicle ${gameRef.player.currentVehicle}");
     }
-    position.x -= obstacleSpeeds[gameRef.player.currentVehicle]! * dt / 3;
+     List<ObstacleType> typeenums = ObstacleType.values;
+
+    check++;
+    if(check%50==0){gameRef.player.updatePoints();}
+    // obstacleSpeeds[gameRef.player.currentVehicle]! / 10;
+    int index = gameRef.ind % (typeenums.length) - 1;
+    if (index == -1) {
+      index = typeenums.length - 1;
+    }
+    
+    position.x -= obstacleSpeeds[typeenums[index]]! * dt / 3;
     super.update(dt);
   }
 }

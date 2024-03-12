@@ -6,7 +6,8 @@ import 'package:greenglide/widgets/buttons/choose_mode.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
 class Mode extends StatefulWidget {
-  const Mode({super.key});
+  const Mode({super.key, required this.sound});
+  final bool sound;
 
   @override
   State<Mode> createState() => _ModeState();
@@ -18,7 +19,7 @@ class _ModeState extends State<Mode> {
     return  Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: AppColors.blue,
-        child:const SizedBox(
+        child: SizedBox(
           width: 400,
           height: 250,
           child: Column(
@@ -27,11 +28,14 @@ class _ModeState extends State<Mode> {
                LuckiestGuyText(text: "CHOOSE MODE", fontSize: 25.0),
               // ChooseModeButton(wid: SinglePlayerHome(), title: "SINGLE PLAYER"),
               ChooseModeButton(
-                  wid: SinglePlayerHome(),
+                sound: widget.sound,
+                  wid: SinglePlayerHome(sound: widget.sound,),
                   title: "SINGLE PLAYER"),
                ChooseModeButton(
+                  sound: widget.sound,
                   wid: NotAvailableSections(), title: "MULTIPLAYER RANDOM"),
                ChooseModeButton(
+                  sound: widget.sound,
                   wid: NotAvailableSections(), title: "MULTIPLAYER PRIVATE ROOM"),
               //  ChooseModeButton(
               //     wid: NotAvailableSections(), title: "MULTIPLAYER WITH CASH REWARDS")

@@ -1,3 +1,5 @@
+import 'package:greenglide/game/player_movements.dart';
+
 enum ObstacleType {
   car,
   bike,
@@ -46,3 +48,16 @@ Map<ObstacleType, double> vehicleScores = {
   ObstacleType.skateboard: 100,
   ObstacleType.taxi: -50
 };
+
+Map<ObstacleType, PlayerMovements> playerMovements = {
+  ObstacleType.car: PlayerMovements.car,
+  ObstacleType.walking: PlayerMovements.walking,
+  ObstacleType.bicycle: PlayerMovements.bicycle,
+  ObstacleType.bike: PlayerMovements.bike,
+  ObstacleType.metro: PlayerMovements.metro,
+  ObstacleType.train: PlayerMovements.train,
+  ObstacleType.airplane: PlayerMovements.airplane,
+  ObstacleType.skateboard: PlayerMovements.skateboard,
+  ObstacleType.taxi: PlayerMovements.taxi
+};
+

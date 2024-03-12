@@ -1,1 +1,11 @@
-enum PlayerMovements {jump, down, run}
+enum PlayerMovements {
+  car,
+  bike,
+  bicycle,
+  metro,
+  train,
+  airplane,
+  skateboard,
+  walking,
+  taxi
+}

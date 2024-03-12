@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/leaderboard/leaderboard_home.dart';
@@ -6,6 +7,7 @@ import 'package:greenglide/screens/learn/learn_more.dart';
 import 'package:greenglide/screens/menu/settings.dart';
 import 'package:greenglide/screens/menu/wallet.dart';
 import 'package:greenglide/screens/profile/profile_home.dart';
+import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/services/shared_preferences/userdetails.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
 import 'package:greenglide/widgets/coins/coins_view.dart';
@@ -22,6 +24,14 @@ class MenuHome extends StatefulWidget {
 }
 
 class _MenuHomeState extends State<MenuHome> {
+  bool audio = false;
+
+  getAudio()async{
+    var aud = await getSoundLocally();
+    setState(() {
+      audio = aud;
+    }); 
+  }
   bool _isAnimating = false;
   bool show = true;
   late Timer _timer;
@@ -37,6 +47,7 @@ class _MenuHomeState extends State<MenuHome> {
   void initState() {
     _startTimer();
     setUsername();
+    getAudio();
     super.initState();
   }
 
@@ -138,6 +149,7 @@ class _MenuHomeState extends State<MenuHome> {
                           InkWell(
                             onTap: () {
                               // showAboutDialog(context: context);
+                               if(audio){ FlameAudio.play("test.wav");}
                               showDialog(
                                   context: context,
                                   builder: ((context) => const Settings()));
@@ -152,7 +164,9 @@ class _MenuHomeState extends State<MenuHome> {
                           ),
                           InkWell(
                             onTap: () {
-                             Navigator.push(context, CustomPageRoute(Wallet()));
+                               if(audio){ FlameAudio.play("test.wav");}
+                              Navigator.push(
+                                  context, CustomPageRoute(Wallet()));
                             },
                             child: Image.asset(
                               "assets/icons/wallet.png",
@@ -175,8 +189,11 @@ class _MenuHomeState extends State<MenuHome> {
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: GestureDetector(
-                              onTap: () => Navigator.push(context,
-                                  CustomPageRoute(const Leaderboard())),
+                              onTap: ()  {
+                               if(audio){ FlameAudio.play("test.wav");}
+                                Navigator.push(context,
+                                    CustomPageRoute(const Leaderboard()));
+                              },
                               child: Image.asset(
                                 "assets/icons/leaderboard.png",
                                 scale: 4,
@@ -184,11 +201,15 @@ class _MenuHomeState extends State<MenuHome> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Navigator.push(
-                                context, CustomPageRoute(const Profile())),
+                            onTap: () {
+                               if(audio){ FlameAudio.play("test.wav");}
+                            Navigator.push(
+                                context, CustomPageRoute(const Profile()));
+                            },
+                            
                             child: Container(
                               height: 40,
-                              width: 140 + username.length*1.0,
+                              width: 140 + username.length * 1.0,
                               decoration: BoxDecoration(
                                   color: AppColors.tealblue,
                                   border: Border.all(
@@ -203,7 +224,9 @@ class _MenuHomeState extends State<MenuHome> {
                                   const CircleAvatar(
                                     backgroundColor: AppColors.golden,
                                     radius: 15,
-                                    backgroundImage: AssetImage("assets/models/character.png",),
+                                    backgroundImage: AssetImage(
+                                      "assets/models/character.png",
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 10,
@@ -219,9 +242,10 @@ class _MenuHomeState extends State<MenuHome> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 20),
+                       Padding(
+                        padding:const EdgeInsets.only(bottom: 20),
                         child: Parallelogram(
+                          sound: audio,
                           width: 200,
                           height: 60,
                           angle: -math.pi / 6, // 30 degrees in radians
@@ -232,6 +256,7 @@ class _MenuHomeState extends State<MenuHome> {
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
                           onTap: () {
+                             if(audio){ FlameAudio.play("test.wav");}
                             Navigator.of(context)
                                 .push(CustomPageRoute(const LearnMore()));
                           },

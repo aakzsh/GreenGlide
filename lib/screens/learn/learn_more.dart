@@ -219,14 +219,24 @@ class _LearnMoreState extends State<LearnMore> {
               ),
               Row(
                 children: [
-                const  Text("See more at "),
+                const  Text("See more at   "),
                   InkWell(
                       onTap: () async {
                         await _launchUrl();
                       },
-                      child: const Text(
-                        "YouTube Playlist",
-                        style: TextStyle(color: Colors.red),
+                      child:  Container(
+                    
+                        width: 120,
+                        height: 30,
+                        decoration: BoxDecoration(
+                              color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                        child: const Center(
+                          child: Text(
+                          "YouTube Playlist",
+                          style: TextStyle(color: Colors.red),
+                                                ),
+                        ),
                       ))
                 ],
               )

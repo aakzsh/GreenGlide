@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/intro/screen2_flutter.dart';
 import 'package:greenglide/services/firebase/logincheck.dart';
+import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
 
 class HaxkIntro extends StatefulWidget {
@@ -16,7 +18,12 @@ class _HaxkIntroState extends State<HaxkIntro>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-
+  playAudio()async{
+    var x = await getSoundLocally();
+    if(x){
+      FlameAudio.play("test.wav");
+    }
+  }
   @override
   void initState() {
     checkLoggedIn();
@@ -29,6 +36,7 @@ class _HaxkIntroState extends State<HaxkIntro>
     );
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
+    playAudio();
     super.initState();
   }
 

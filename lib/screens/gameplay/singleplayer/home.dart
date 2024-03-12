@@ -6,7 +6,8 @@ import 'package:greenglide/game/runner.dart';
 import 'package:greenglide/storylines/storyline_widget.dart';
 
 class SinglePlayerHome extends StatefulWidget {
-  const SinglePlayerHome({super.key});
+  const SinglePlayerHome({super.key, required this.sound});
+  final bool sound;
 
   @override
   State<SinglePlayerHome> createState() => _SinglePlayerHomeState();
@@ -51,7 +52,7 @@ class _SinglePlayerHomeState extends State<SinglePlayerHome> {
                 ),
               )
               :  GameWidget(
-            game: GreenGlideGame(),
+            game: GreenGlideGame(sound: widget.sound),
             
             // initialActiveOverlays: const [],
           ),

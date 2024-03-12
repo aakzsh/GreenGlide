@@ -21,33 +21,38 @@ class Player extends SpriteGroupComponent<PlayerMovements>
     add(MoveByEffect(
       Vector2(0, Config.gravity),
       EffectController(duration: 0.2, curve: Curves.decelerate),
-      onComplete: () => current = PlayerMovements.down,
+      // onComplete: () => current = PlayerMovements.down,
     ));
-    current = PlayerMovements.run;
+    // current = PlayerMovements.run;
   }
 
   void fall() {
     add(MoveByEffect(
       Vector2(0, -Config.gravity),
       EffectController(duration: 0.2, curve: Curves.decelerate),
-      onComplete: () => current = PlayerMovements.down,
+      // onComplete: () => current = PlayerMovements.down,
     ));
-    current = PlayerMovements.run;
+    // current = PlayerMovements.run;
   }
-
+  bool switcher = false;
   @override
   Future<void> onLoad() async {
-    final playerdown = await gameRef.loadSprite(Assets.player);
-    final playerjump = await gameRef.loadSprite(Assets.player);
-    final playerrun = await gameRef.loadSprite(Assets.player);
+    final playerrun = await gameRef.loadSprite(Assets.playerrun);
+    final playerplane =  await gameRef.loadSprite("characterplane.png");
 
     size = Vector2(120, 100);
     position = Vector2(50, gameRef.size.y / 1.5);
-    current = PlayerMovements.run;
+    current = PlayerMovements.walking;
     sprites = {
-      PlayerMovements.run: playerrun,
-      PlayerMovements.jump: playerjump,
-      PlayerMovements.down: playerdown
+      PlayerMovements.walking: playerrun,
+      PlayerMovements.car: playerrun,
+      PlayerMovements.bike: playerplane,
+      PlayerMovements.bicycle: playerrun,
+      PlayerMovements.metro: playerplane,
+      PlayerMovements.train: playerrun,
+      PlayerMovements.airplane: playerplane,
+      PlayerMovements.skateboard: playerrun,
+      PlayerMovements.taxi: playerrun,
     };
 
     add(CircleHitbox());
@@ -58,7 +63,7 @@ class Player extends SpriteGroupComponent<PlayerMovements>
   }
 
   @override
-  void update(double dt) {
+  void update(double dt)async {
     if (position.y < gameRef.size.y / 1.5) {
       position.y += Config.fallVelocity * dt;
     }

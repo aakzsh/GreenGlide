@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/menu/menu_home.dart';
@@ -11,9 +12,10 @@ import 'package:greenglide/widgets/text/normal_text_center.dart';
 
 class SinglePlayerScore extends StatefulWidget {
   const SinglePlayerScore(
-      {super.key, required this.score, required this.coins});
+      {super.key, required this.score, required this.coins, required this.sound});
   final int score;
   final int coins;
+  final bool sound;
 
   @override
   State<SinglePlayerScore> createState() => _SinglePlayerScoreState();
@@ -47,8 +49,8 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
       duration: const Duration(milliseconds: 5000),
       vsync: this,
     )..repeat();
-    // addToLeaderboard(widget.score);
-    // updateCoins(widget.coins);
+    addToLeaderboard(widget.score);
+    updateCoins(widget.coins);
     calculateOffer();
     super.initState();
   }
@@ -123,6 +125,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                             borderRadius: BorderRadius.circular(10)),
                         onPressed: () async {
                           // await fetchData();
+                          if(widget.sound){ FlameAudio.play("test.wav");}
                           showDialog(
                               context: context,
                               builder: ((context) => Dialog(
@@ -193,6 +196,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                       side: const BorderSide(width: 2, color: Colors.black),
                       borderRadius: BorderRadius.circular(10)),
                   onPressed: () {
+                     if(widget.sound){ FlameAudio.play("test.wav");}
                     Navigator.pushAndRemoveUntil(context,
                         CustomPageRoute(const MenuHome()), (route) => false);
                   },

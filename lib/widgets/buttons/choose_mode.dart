@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
@@ -5,9 +6,10 @@ import 'package:greenglide/widgets/text/luckiest_guy.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ChooseModeButton extends StatefulWidget {
-  const ChooseModeButton({super.key, required this.wid, required this.title});
+  const ChooseModeButton({super.key, required this.wid, required this.title, required this.sound});
   final Widget wid;
   final String title;
+  final bool sound;
   @override
   State<ChooseModeButton> createState() => _ChooseModeButtonState();
 }
@@ -19,6 +21,7 @@ class _ChooseModeButtonState extends State<ChooseModeButton> {
         padding: const EdgeInsets.all(5),
         child: InkWell(
             onTap: () {
+               if(widget.sound){ FlameAudio.play("test.wav");}
               Navigator.of(context).push(CustomPageRoute(widget.wid));
             },
             child: Stack(

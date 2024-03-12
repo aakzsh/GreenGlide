@@ -8,7 +8,10 @@ class Assets{
   static const ground = "scenery/road.png";
   static const player = "dashatar.png";
   static const obstacle = "coin.png";
-  static const ground2 = "scenery/road2.png"
+  static const ground2 = "scenery/road2.png";
+  static const playerrun = "run.png";
+  static const playerjump = "jump.png";
+  static const playerfall = "fall.png"
 ;}
 
 class CoinAssets{
@@ -51,9 +54,9 @@ Map<ObstacleType, int> groups = {
 
 Map<CollectibleType, String> collectiblesAssets= {
     // ObstacleType. coin :"coin.png",
-  CollectibleType.addscore :"coin.png",
-  CollectibleType.addtime :"skyline.png",
-  CollectibleType.coins :"character.png",
-  CollectibleType.reducescore :"flutter.png",
-  CollectibleType.reducetime :"logo.png",
+  CollectibleType.addscore :"addscore.png",
+  CollectibleType.addtime :"addtime.png",
+  CollectibleType.coins :"coins.png",
+  CollectibleType.reducescore :"reducescore.png",
+  CollectibleType.reducetime :"reducetime.png",
 };

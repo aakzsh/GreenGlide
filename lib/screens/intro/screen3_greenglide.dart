@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/menu/menu_home.dart';
+import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
 
 class GreenGlideIntro extends StatefulWidget {
@@ -13,6 +15,13 @@ class GreenGlideIntro extends StatefulWidget {
 
 class _GreenGlideIntroState extends State<GreenGlideIntro>
     with SingleTickerProviderStateMixin {
+  playAudio() async {
+    var x = await getSoundLocally();
+    if (x) {
+      FlameAudio.play("test.wav");
+    }
+  }
+
   late AnimationController _controller;
   late Animation<double> _animation;
   double _scale = 0.0;
@@ -40,6 +49,7 @@ class _GreenGlideIntroState extends State<GreenGlideIntro>
     );
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
+    playAudio();
     super.initState();
   }
 
