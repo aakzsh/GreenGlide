@@ -7,7 +7,7 @@ getCardsFromFirebase() async {
       .collection("users")
       .doc(uid)
       .get();
-  print("hehe");
-  print(res.data());
+  // print("hehe");
+  // print(res.data());
   return res.data()!["cards"];
 }

@@ -1,12 +1,9 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:greenglide/game/assets.dart';
 import 'package:greenglide/game/collectible_position.dart';
 import 'package:greenglide/game/collectible_type.dart';
 import 'package:greenglide/game/components/collectible.dart';
-import 'package:greenglide/game/components/obstacle.dart';
-import 'package:greenglide/game/obstacle_position.dart';
 import 'package:greenglide/game/obstacle_type.dart';
 import 'package:greenglide/game/runner.dart';
 
@@ -42,8 +39,8 @@ class CollectibleGroup extends PositionComponent with HasGameRef<GreenGlideGame>
       // gameRef.obsGroup.typeOfObs = typeOfObs;
       removeFromParent();
       gameRef.collisHit = false;
-      // TODO: some sort of mismatch is here
-      print("current vehicle ${gameRef.player.currentVehicle}");
+     
+      // print("current vehicle ${gameRef.player.currentVehicle}");
     }
      List<ObstacleType> typeenums = ObstacleType.values;
 

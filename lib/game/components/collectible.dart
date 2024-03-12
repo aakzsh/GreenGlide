@@ -7,8 +7,6 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:greenglide/game/assets.dart';
 import 'package:greenglide/game/collectible_position.dart';
 import 'package:greenglide/game/collectible_type.dart';
-import 'package:greenglide/game/obstacle_position.dart';
-import 'package:greenglide/game/obstacle_type.dart';
 import 'package:greenglide/game/runner.dart';
 
 class Collectible extends SpriteComponent
@@ -20,7 +18,7 @@ class Collectible extends SpriteComponent
 
   @override
   Future<void> onLoad() async {
-    print("loaded");
+    // print("loaded");
     final obstacle = await Flame.images.load(collectiblesAssets[type]!);
     size = Vector2(66, 32);
     switch (obstaclePosition) {

@@ -92,7 +92,7 @@ class _HaxkIntroState extends State<HaxkIntro>
                   },
                   child:  Text(
                     Helper.haxkPresents[lang]!,
-                    style: TextStyle(fontFamily: "Lexend", fontSize: 20),
+                    style: const TextStyle(fontFamily: "Lexend", fontSize: 20),
                   )),
             ],
           ),

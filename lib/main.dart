@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:greenglide/models/global_key.dart';
-import 'package:greenglide/screens/gameplay/singleplayer/score.dart';
 import 'package:greenglide/screens/intro/screen1_haxk.dart';
 import 'package:greenglide/utils/themes/theme_builder.dart';
 import "./firebase_options.dart";

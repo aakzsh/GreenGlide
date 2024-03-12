@@ -3,7 +3,6 @@ import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/services/firebase/getCardsFromFirebase.dart';
 import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
-import 'package:greenglide/widgets/text/luckiest_guy_textstyle.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Wallet extends StatefulWidget {
@@ -37,7 +36,7 @@ class _WalletState extends State<Wallet> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           LuckiestGuyText(text: Helper.walletcards[widget.lang]!, fontSize: 25.0),
        
 

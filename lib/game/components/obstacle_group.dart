@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:greenglide/game/assets.dart';
 import 'package:greenglide/game/components/obstacle.dart';
@@ -17,7 +16,7 @@ class ObstacleGroup extends PositionComponent with HasGameRef<GreenGlideGame> {
   Future<void> onLoad() async {
     position.x = gameRef.size.x;
 
-    //TODO: add the code here for setting random height of coin
+  
     List<ObstaclePosition> enumValues = ObstaclePosition.values;
     // Generate a random index
     int randomIndex = Random().nextInt(enumValues.length);
@@ -46,8 +45,8 @@ class ObstacleGroup extends PositionComponent with HasGameRef<GreenGlideGame> {
       gameRef.obsGroup.typeOfObs = typeOfObs;
       removeFromParent();
       gameRef.isHit = false;
-      // TODO: some sort of mismatch is here
-      print("current vehicle ${gameRef.player.currentVehicle}");
+     
+      // print("current vehicle ${gameRef.player.currentVehicle}");
     }
     position.x -= obstacleSpeeds[gameRef.player.currentVehicle]! * dt / 3;
     super.update(dt);

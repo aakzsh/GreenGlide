@@ -35,10 +35,10 @@ class _ModeState extends State<Mode> {
                   title:Helper.singlePlayer[widget.lang]!),
                ChooseModeButton(
                   sound: widget.sound,
-                  wid: NotAvailableSections(), title: Helper.multiplayerRandom[widget.lang]!),
+                  wid: const NotAvailableSections(), title: Helper.multiplayerRandom[widget.lang]!),
                ChooseModeButton(
                   sound: widget.sound,
-                  wid: NotAvailableSections(), title: Helper.multiplayerPrivate[widget.lang]!),
+                  wid: const NotAvailableSections(), title: Helper.multiplayerPrivate[widget.lang]!),
               //  ChooseModeButton(
               //     wid: NotAvailableSections(), title: "MULTIPLAYER WITH CASH REWARDS")
             ],

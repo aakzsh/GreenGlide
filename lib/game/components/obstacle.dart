@@ -36,7 +36,7 @@ class Obstacle extends SpriteComponent
       Set<Vector2> intersectionPoints, PositionComponent other) async {
     List<ObstacleType> typeenums = ObstacleType.values;
 
-    print(gameRef.player.currentVehicle);
+    // print(gameRef.player.currentVehicle);
     if (gameRef.sound) {
       FlameAudio.play("hit.wav");
     }

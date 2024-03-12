@@ -18,13 +18,13 @@ class _LeaderboardState extends State<Leaderboard> {
 
   List<Map<String, dynamic>> convertList(List<dynamic> originalList) {
   List<Map<String, dynamic>> newList = [];
-  originalList.forEach((map) {
+  for (var map in originalList) {
     Map<String, dynamic> newMap = {};
     map.forEach((key, value) {
       newMap[key.toString()] = value;
     });
     newList.add(newMap);
-  });
+  }
   return newList;
 }
 
@@ -37,7 +37,7 @@ class _LeaderboardState extends State<Leaderboard> {
     setState(() {
       scores = l;
     });
-    print("score is $scores");
+    // print("score is $scores");
   }
 
   @override
@@ -103,7 +103,7 @@ class _LeaderboardState extends State<Leaderboard> {
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(left: 20, top: 20), 
+                Padding(padding: const EdgeInsets.only(left: 20, top: 20), 
                 child: Image.asset(
                   "assets/models/character.png",
                   scale: 9,

@@ -6,6 +6,6 @@ getLeaderboard() async{
    await Firebase.initializeApp();
 final FirebaseFirestore firestore = FirebaseFirestore.instance;
 final res = await firestore.collection("scores").doc("topscores").get();
-print(res.data());
+// print(res.data());
 return res.data()!["leaderboard"];
 }

@@ -21,12 +21,12 @@ addToLeaderboard(score)async{
 
  List<Map<String, dynamic>> convertList(List<dynamic> originalList) {
   List<Map<String, dynamic>> newList = [];
-  originalList.forEach((map) {
+  for (var map in originalList) {
     Map<String, dynamic> newMap = {};
     map.forEach((key, value) {
       newMap[key.toString()] = value;
     });
     newList.add(newMap);
-  });
+  }
   return newList;
 }

@@ -94,7 +94,7 @@ class _FlutterIntroState extends State<FlutterIntro>
             ),
              Text(
               Helper.builtWithFlutter[widget.lang]!,
-              style: TextStyle(fontFamily: "Lexend", fontSize: 20),
+              style: const TextStyle(fontFamily: "Lexend", fontSize: 20),
             )
           ],
         ),
