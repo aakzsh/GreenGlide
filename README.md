@@ -1,16 +1,17 @@
-# greenglide
+# GreenGlide
 
-A new Flutter project.
+![GreenGlide Logo](logo.png?raw=true "Logo")
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+A flutter game focussed around the goal of achieving sustainability and encourage support for a more developed and environmentally educated world!
 
-A few resources to get you started if this is your first Flutter project:
+# Running Locally
+The setup is easy to get along with
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Firstly, clone the repository onto your local system ```git clone https://github.com/aakzsh/GreenGlide```
+2. cd into the root directory, then run ```dart pub get```
+3. Note that you'll need to setup your own firebase project with Firestore and Anonymous login, and add the android app in that.
+4. For running the backend for google wallet locally, cd into backend directory, then run ```npm install``` ```node app.js```
+5. Run the flutter app ```flutter run```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+For any assistance, please connect to me via mail or via raising an issue.
