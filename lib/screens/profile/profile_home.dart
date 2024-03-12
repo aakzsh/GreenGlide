@@ -4,13 +4,15 @@ import 'package:greenglide/screens/menu/menu_home.dart';
 import 'package:greenglide/services/firebase/checkUsernameExists.dart';
 import 'package:greenglide/services/shared_preferences/userdetails.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/coins/coins_view.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 import 'package:greenglide/widgets/text/normal_text.dart';
 import 'package:greenglide/widgets/text/normal_text_center.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  const Profile({super.key, required this.lang});
+  final String lang;
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -36,15 +38,15 @@ class _ProfileState extends State<Profile> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               backgroundColor: const Color.fromARGB(255, 234, 104, 71),
-              child: const SizedBox(
+              child:  SizedBox(
                 width: 300,
                 height: 200,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LuckiestGuyText(text: "ALERT!", fontSize: 25.0),
+                    LuckiestGuyText(text: Helper.alert[widget.lang]!, fontSize: 25.0),
                     NormalText(
-                        text: "The username is not changed yet!", fontSize: 15)
+                        text: Helper.usernameNotChangedYet[widget.lang]!, fontSize: 15)
                   ],
                 ),
               ))));
@@ -57,16 +59,16 @@ class _ProfileState extends State<Profile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 backgroundColor: const Color.fromARGB(255, 234, 104, 71),
-                child: const SizedBox(
+                child:  SizedBox(
                   width: 300,
                   height: 200,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LuckiestGuyText(text: "ERROR!", fontSize: 25.0),
+                      LuckiestGuyText(text: Helper.error[widget.lang]!, fontSize: 25.0),
                       NormalTextCenter(
                           text:
-                              "This username already exists, try another one!",
+                              Helper.usernameAlreadyExists[widget.lang]!,
                           fontSize: 15)
                     ],
                   ),
@@ -79,16 +81,16 @@ class _ProfileState extends State<Profile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 backgroundColor: const Color.fromARGB(255, 74, 234, 71),
-                child: const SizedBox(
+                child:  SizedBox(
                   width: 300,
                   height: 200,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LuckiestGuyText(text: "SUCCESS!", fontSize: 25.0),
+                      LuckiestGuyText(text:  Helper.success[widget.lang]!, fontSize: 25.0),
                       NormalTextCenter(
                           text:
-                              "Username updated successfully, reload app to reflect changes!",
+                               Helper.usernameChanged[widget.lang]!,
                           fontSize: 15)
                     ],
                   ),
@@ -131,7 +133,7 @@ class _ProfileState extends State<Profile> {
                         GestureDetector(
                             onTap: () => Navigator.pushAndRemoveUntil(
                                 context,
-                                CustomPageRoute(const MenuHome()),
+                                CustomPageRoute( MenuHome(lang: widget.lang,)),
                                 (route) => false),
                             child: Image.asset(
                               "assets/icons/back.png",
@@ -140,7 +142,7 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const LuckiestGuyText(text: "PROFILE", fontSize: 30.0)
+                         LuckiestGuyText(text: Helper.profile[widget.lang]!, fontSize: 30.0)
                       ],
                     ),
                   ),
@@ -165,8 +167,8 @@ class _ProfileState extends State<Profile> {
                             alignment: Alignment.topRight,
                             child: CoinView(),
                           ),
-                          const LuckiestGuyText(
-                              text: "CHANGE OUTFIT", fontSize: 25.0),
+                           LuckiestGuyText(
+                              text: Helper.changeOutfit[widget.lang]!, fontSize: 25.0),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -178,8 +180,8 @@ class _ProfileState extends State<Profile> {
                                     side: const BorderSide(
                                         width: 1.5, color: Colors.black)),
                                 onPressed: () {},
-                                child: const LuckiestGuyText(
-                                  text: "2500 COINS",
+                                child:  LuckiestGuyText(
+                                  text: "2500 ${Helper.coins[widget.lang]!}",
                                   fontSize: 18.0,
                                 ),
                               ),

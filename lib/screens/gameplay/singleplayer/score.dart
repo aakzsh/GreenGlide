@@ -12,10 +12,11 @@ import 'package:greenglide/widgets/text/normal_text_center.dart';
 
 class SinglePlayerScore extends StatefulWidget {
   const SinglePlayerScore(
-      {super.key, required this.score, required this.coins, required this.sound});
+      {super.key, required this.score, required this.coins, required this.sound, required this.lang});
   final int score;
   final int coins;
   final bool sound;
+  final String lang;
 
   @override
   State<SinglePlayerScore> createState() => _SinglePlayerScoreState();
@@ -165,7 +166,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                                              await addCardtoFirebase(res);
                                                   Navigator.pop(context);
                                                    Navigator.pushAndRemoveUntil(context,
-                        CustomPageRoute(const MenuHome()), (route) => false);
+                        CustomPageRoute( MenuHome(lang: widget.lang,)), (route) => false);
                                             },
                                             child: const LuckiestGuyText(
                                                 text: "ADD TO GOOGLE WALLET",
@@ -198,7 +199,7 @@ class _SinglePlayerScoreState extends State<SinglePlayerScore>
                   onPressed: () {
                      if(widget.sound){ FlameAudio.play("button.wav");}
                     Navigator.pushAndRemoveUntil(context,
-                        CustomPageRoute(const MenuHome()), (route) => false);
+                        CustomPageRoute( MenuHome(lang: widget.lang,)), (route) => false);
                   },
                   child: const LuckiestGuyText(text: "HOME", fontSize: 20.0))
             ],

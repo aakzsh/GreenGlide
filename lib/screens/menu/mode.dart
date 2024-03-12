@@ -6,8 +6,9 @@ import 'package:greenglide/widgets/buttons/choose_mode.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 
 class Mode extends StatefulWidget {
-  const Mode({super.key, required this.sound});
+  const Mode({super.key, required this.sound, required this.lang});
   final bool sound;
+  final String lang;
 
   @override
   State<Mode> createState() => _ModeState();
@@ -29,7 +30,7 @@ class _ModeState extends State<Mode> {
               // ChooseModeButton(wid: SinglePlayerHome(), title: "SINGLE PLAYER"),
               ChooseModeButton(
                 sound: widget.sound,
-                  wid: SinglePlayerHome(sound: widget.sound,),
+                  wid: SinglePlayerHome(sound: widget.sound, lang: widget.lang),
                   title: "SINGLE PLAYER"),
                ChooseModeButton(
                   sound: widget.sound,

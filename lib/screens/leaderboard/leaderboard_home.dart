@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/services/firebase.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 import 'package:greenglide/widgets/text/table_entry.dart';
 
 class Leaderboard extends StatefulWidget {
-  const Leaderboard({super.key});
+  const Leaderboard({super.key, required this.lang});
+  final String lang;
 
   @override
   State<Leaderboard> createState() => _LeaderboardState();
@@ -47,10 +49,10 @@ class _LeaderboardState extends State<Leaderboard> {
 
   List<TableRow> buildWidgets() {
     List<TableRow> widgets = [
-      const TableRow(children: [
-        LuckiestGuyText(text: "RANK", fontSize: 20.0),
-        LuckiestGuyText(text: "SCORE", fontSize: 20.0),
-        LuckiestGuyText(text: "USERNAME", fontSize: 20.0)
+       TableRow(children: [
+        LuckiestGuyText(text: Helper.rank[widget.lang]!, fontSize: 20.0),
+        LuckiestGuyText(text: Helper.score[widget.lang]!, fontSize: 20.0),
+        LuckiestGuyText(text: Helper.username[widget.lang]!, fontSize: 20.0)
       ]),
     ];
     for (var item in scores) {
@@ -97,7 +99,7 @@ class _LeaderboardState extends State<Leaderboard> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const LuckiestGuyText(text: "LEADERBOARD", fontSize: 30.0)
+                       LuckiestGuyText(text: Helper.leaderboard[widget.lang]!, fontSize: 30.0)
                     ],
                   ),
                 ),

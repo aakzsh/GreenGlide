@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/services/firebase/getCardsFromFirebase.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
 import 'package:greenglide/widgets/text/luckiest_guy_textstyle.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Wallet extends StatefulWidget {
-  const Wallet({super.key});
+  const Wallet({super.key, required this.lang});
+  final String lang;
 
   @override
   State<Wallet> createState() => _WalletState();
@@ -36,7 +38,7 @@ class _WalletState extends State<Wallet> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 20,),
-          LuckiestGuyText(text: "WALLET CARDS", fontSize: 25.0),
+          LuckiestGuyText(text: Helper.walletcards[widget.lang]!, fontSize: 25.0),
        
 
         Expanded(child:  GridView.builder(
@@ -57,8 +59,8 @@ class _WalletState extends State<Wallet> {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
         color: Colors.amber, 
         ),
-        child: const Center(
-          child: LuckiestGuyText(text: "OFFER CARD", fontSize: 18.0)
+        child:  Center(
+          child: LuckiestGuyText(text: Helper.offercard[widget.lang]!, fontSize: 18.0)
         ),
       ),
     );

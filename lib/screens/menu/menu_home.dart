@@ -10,6 +10,7 @@ import 'package:greenglide/screens/profile/profile_home.dart';
 import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/services/shared_preferences/userdetails.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 import 'package:greenglide/widgets/coins/coins_view.dart';
 import 'package:greenglide/widgets/parallelogram/parallelogram.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
@@ -17,7 +18,8 @@ import 'dart:math' as math;
 import 'package:shimmer/shimmer.dart';
 
 class MenuHome extends StatefulWidget {
-  const MenuHome({super.key});
+  const MenuHome({super.key, required this.lang});
+  final String lang;
 
   @override
   State<MenuHome> createState() => _MenuHomeState();
@@ -135,7 +137,7 @@ class _MenuHomeState extends State<MenuHome> {
                       Padding(
                         padding: const EdgeInsets.all(5),
                         child: Image.asset(
-                          "assets/images/logo.png",
+                          widget.lang=="en"?"assets/images/logo.png":"assets/images/logojp.png",
                           height: 70,
                         ),
                       ),
@@ -152,7 +154,7 @@ class _MenuHomeState extends State<MenuHome> {
                                if(audio){ FlameAudio.play("button.wav");}
                               showDialog(
                                   context: context,
-                                  builder: ((context) => const Settings()));
+                                  builder: ((context) =>  Settings(lang: widget.lang)));
                             },
                             child: Image.asset(
                               "assets/icons/settings.png",
@@ -166,7 +168,7 @@ class _MenuHomeState extends State<MenuHome> {
                             onTap: () {
                                if(audio){ FlameAudio.play("button.wav");}
                               Navigator.push(
-                                  context, CustomPageRoute(Wallet()));
+                                  context, CustomPageRoute(Wallet(lang: widget.lang)));
                             },
                             child: Image.asset(
                               "assets/icons/wallet.png",
@@ -192,7 +194,7 @@ class _MenuHomeState extends State<MenuHome> {
                               onTap: ()  {
                                if(audio){ FlameAudio.play("button.wav");}
                                 Navigator.push(context,
-                                    CustomPageRoute(const Leaderboard()));
+                                    CustomPageRoute( Leaderboard(lang: widget.lang)));
                               },
                               child: Image.asset(
                                 "assets/icons/leaderboard.png",
@@ -204,7 +206,7 @@ class _MenuHomeState extends State<MenuHome> {
                             onTap: () {
                                if(audio){ FlameAudio.play("button.wav");}
                             Navigator.push(
-                                context, CustomPageRoute(const Profile()));
+                                context, CustomPageRoute( Profile(lang: widget.lang)));
                             },
                             
                             child: Container(
@@ -245,6 +247,7 @@ class _MenuHomeState extends State<MenuHome> {
                        Padding(
                         padding:const EdgeInsets.only(bottom: 20),
                         child: Parallelogram(
+                          lang: widget.lang,
                           sound: audio,
                           width: 200,
                           height: 60,
@@ -270,9 +273,9 @@ class _MenuHomeState extends State<MenuHome> {
                                       border: Border.all(
                                           color: Colors.black, width: 2),
                                       borderRadius: BorderRadius.circular(10)),
-                                  child: const Center(
+                                  child:  Center(
                                       child: LuckiestGuyText(
-                                          text: "LEARN MORE", fontSize: 18.0))),
+                                          text: Helper.learnMore[widget.lang]!, fontSize: 18.0))),
                               Shimmer.fromColors(
                                   baseColor: Colors.white10,
                                   highlightColor: AppColors.golden,

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/intro/screen2_flutter.dart';
 import 'package:greenglide/services/firebase/logincheck.dart';
+import 'package:greenglide/services/shared_preferences/japanese.dart';
 import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 
 class HaxkIntro extends StatefulWidget {
   const HaxkIntro({super.key});
@@ -16,6 +18,14 @@ class HaxkIntro extends StatefulWidget {
 
 class _HaxkIntroState extends State<HaxkIntro>
     with SingleTickerProviderStateMixin {
+  String lang = "en";
+
+  setLanguage()async{
+    var jp  = await getJapaneseLocally();
+    setState(() {
+      lang = jp?"jp":"en";
+    });
+  }
   late AnimationController _controller;
   late Animation<double> _animation;
   playAudio()async{
@@ -27,8 +37,9 @@ class _HaxkIntroState extends State<HaxkIntro>
   @override
   void initState() {
     checkLoggedIn();
+    setLanguage();
     Timer(const Duration(milliseconds: 2500), () {
-      Navigator.of(context).push(CustomPageRoute(const FlutterIntro()));
+      Navigator.of(context).push(CustomPageRoute( FlutterIntro(lang: lang,)));
     });
     _controller = AnimationController(
       vsync: this,
@@ -77,10 +88,10 @@ class _HaxkIntroState extends State<HaxkIntro>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FlutterIntro()));
+                            builder: (context) =>  FlutterIntro(lang: lang)));
                   },
-                  child: const Text(
-                    "TEAM HAXK PRESENTS",
+                  child:  Text(
+                    Helper.haxkPresents[lang]!,
                     style: TextStyle(fontFamily: "Lexend", fontSize: 20),
                   )),
             ],

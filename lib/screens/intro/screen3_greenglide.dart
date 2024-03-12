@@ -7,7 +7,8 @@ import 'package:greenglide/services/shared_preferences/sounds.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
 
 class GreenGlideIntro extends StatefulWidget {
-  const GreenGlideIntro({super.key});
+  const GreenGlideIntro({super.key, required this.lang});
+  final String lang;
 
   @override
   State<GreenGlideIntro> createState() => _GreenGlideIntroState();
@@ -39,7 +40,7 @@ class _GreenGlideIntroState extends State<GreenGlideIntro>
     });
     Timer(const Duration(milliseconds: 2500), () {
       Navigator.of(context).pushAndRemoveUntil(
-        CustomPageRoute(const MenuHome()),
+        CustomPageRoute(MenuHome(lang: widget.lang)),
         (route) => false,
       );
     });
@@ -81,8 +82,8 @@ class _GreenGlideIntroState extends State<GreenGlideIntro>
                     curve: Curves.easeOut,
                     transform: Matrix4.diagonal3Values(_scale, _scale, 1.0),
                     child: Image.asset(
-                      "assets/images/logo.png",
-                      scale: 4,
+                     widget.lang=="en"? "assets/images/logo.png": "assets/images/logojp.png",
+                      scale: widget.lang=="en"?4:6,
                     )),
               ))),
     );

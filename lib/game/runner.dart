@@ -15,7 +15,8 @@ import "components/player.dart";
 import '../widgets/text/luckiest_guy_textstyle.dart';
 
 class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
-  GreenGlideGame({required this.sound});
+  GreenGlideGame({required this.sound, required this.lang});
+  final String lang;
   final bool sound;
   late Player player;
   late Ground ground;
@@ -66,7 +67,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
-          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins, sound: sound)),
+          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins, sound: sound, lang: lang)),
           (route) => false);
     }
     time--;
@@ -82,7 +83,7 @@ class GreenGlideGame extends FlameGame with TapDetector, HasCollisionDetection {
       pauseEngine();
       Navigator.pushAndRemoveUntil(
           NavigationService.navigatorKey.currentContext!,
-          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins, sound: sound)),
+          CustomPageRoute(SinglePlayerScore(score: player.points, coins: player.coins, sound: sound, lang: lang)),
           (route) => false);
     }
   }

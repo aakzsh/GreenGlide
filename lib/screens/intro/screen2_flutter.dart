@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
 import 'package:greenglide/screens/intro/screen3_greenglide.dart';
 import 'package:greenglide/utils/animations/page_transition.dart';
+import 'package:greenglide/utils/helper/helper.dart';
 
 class FlutterIntro extends StatefulWidget {
-  const FlutterIntro({super.key});
+  const FlutterIntro({super.key, required this.lang});
+  final String lang;
 
   @override
   State<FlutterIntro> createState() => _FlutterIntroState();
@@ -18,7 +20,7 @@ class _FlutterIntroState extends State<FlutterIntro>
   @override
   void initState() {
     Timer(const Duration(milliseconds: 1500), () {
-      Navigator.of(context).push(CustomPageRoute(const GreenGlideIntro()));
+      Navigator.of(context).push(CustomPageRoute( GreenGlideIntro(lang: widget.lang)));
     });
     _controller = AnimationController(
       vsync: this,
@@ -90,8 +92,8 @@ class _FlutterIntroState extends State<FlutterIntro>
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              "BUILT WITH FLUTTER",
+             Text(
+              Helper.builtWithFlutter[widget.lang]!,
               style: TextStyle(fontFamily: "Lexend", fontSize: 20),
             )
           ],
