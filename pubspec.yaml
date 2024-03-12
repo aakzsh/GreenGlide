@@ -21,6 +21,9 @@ dependencies:
   cloud_firestore: ^4.15.5
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.5
+  ably_flutter: ^1.2.27
+  google_wallet: ^0.1.1
+  http: ^1.1.2
 
 dev_dependencies:
   flutter_test:

@@ -53,7 +53,7 @@ Map<CollectibleType, String> collectiblesAssets= {
     // ObstacleType. coin :"coin.png",
   CollectibleType.addscore :"coin.png",
   CollectibleType.addtime :"skyline.png",
-  CollectibleType.coins :"dashatar.png",
+  CollectibleType.coins :"character.png",
   CollectibleType.reducescore :"flutter.png",
   CollectibleType.reducetime :"logo.png",
 };

@@ -21,7 +21,7 @@ class _StorylineWidgetState extends State<StorylineWidget> {
 
   void getRand(){
     Random random =  Random();
-    int randomNumber = random.nextInt(4);
+    int randomNumber = random.nextInt(Storylines.stories.length);
     setState(() {
       index = randomNumber;
     });

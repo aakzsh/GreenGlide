@@ -77,8 +77,8 @@ class _MenuHomeState extends State<MenuHome> {
             alignment: Alignment.center,
             children: [
               Image.asset(
-                "assets/models/dashatar.png",
-                scale: 4,
+                "assets/models/character.png",
+                scale: 9,
               ),
               Stack(
                 alignment: Alignment.bottomCenter,
@@ -152,9 +152,7 @@ class _MenuHomeState extends State<MenuHome> {
                           ),
                           InkWell(
                             onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: ((context) => const Wallet()));
+                             Navigator.push(context, CustomPageRoute(Wallet()));
                             },
                             child: Image.asset(
                               "assets/icons/wallet.png",
@@ -205,7 +203,7 @@ class _MenuHomeState extends State<MenuHome> {
                                   const CircleAvatar(
                                     backgroundColor: AppColors.golden,
                                     radius: 15,
-                                    backgroundImage: AssetImage("assets/models/dashatar.png"),
+                                    backgroundImage: AssetImage("assets/models/character.png",),
                                   ),
                                   const SizedBox(
                                     width: 10,

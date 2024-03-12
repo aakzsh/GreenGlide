@@ -19,7 +19,8 @@ checkLoggedIn() async{
       "coins": 500,
       "premium": false,
       "uid": uid,
-      "outfits": [0]
+      "outfits": [0],
+      "cards": []
     };
     var res = await addUser(data);
     setuserStatsLocally(res);

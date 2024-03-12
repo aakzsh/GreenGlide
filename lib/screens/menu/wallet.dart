@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:greenglide/constants/colors.dart';
+import 'package:greenglide/services/firebase/getCardsFromFirebase.dart';
 import 'package:greenglide/widgets/text/luckiest_guy.dart';
+import 'package:greenglide/widgets/text/luckiest_guy_textstyle.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Wallet extends StatefulWidget {
   const Wallet({super.key});
@@ -10,60 +13,60 @@ class Wallet extends StatefulWidget {
 }
 
 class _WalletState extends State<Wallet> {
+
+  var cards = [];
+  getCards()async{
+    var l = await getCardsFromFirebase();
+    setState(() {
+      cards = l;
+    });
+  }
+  @override
+  void initState(){
+    getCards();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-        backgroundColor: AppColors.blue,
-        child: SizedBox(
-          width: 400,
-          height: 250,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const LuckiestGuyText(text: "WALLET", fontSize: 25.0),
-              const LuckiestGuyText(text: "BALANCE: 23 CASH", fontSize: 30.0),
-              MaterialButton(
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: const BorderSide(color: Colors.black, width: 2)),
-                  color: AppColors.golden,
-                  minWidth: 220,
-                  height: 50,
-                  child: const LuckiestGuyText(
-                      text: "WITHDRAW ALL", fontSize: 18.0)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        color: AppColors.green,
-                        border: Border.all(color: Colors.black, width: 2),
-                        borderRadius: BorderRadius.circular(10)
-                        ),
-                    child: const TextField(),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 130,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.green,
-                      border: Border.all(color: Colors.black, width: 2),
-                         borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: const Center(
-                        child:
-                            LuckiestGuyText(text: "ADD MONEY", fontSize: 20.0)),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ));
+    return Scaffold(
+      backgroundColor: AppColors.blue,
+      // body: Text("ehhe"),
+      
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 20,),
+          LuckiestGuyText(text: "WALLET CARDS", fontSize: 25.0),
+       
+
+        Expanded(child:  GridView.builder(
+  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 5, // number of items in each row
+    mainAxisSpacing: 8.0, // spacing between rows
+    crossAxisSpacing: 8.0, // spacing between columns
+  ),
+  padding: const EdgeInsets.all(8.0), // padding around the grid
+  itemCount: cards.length, // total number of items
+  itemBuilder: (context, index) {
+    return InkWell(
+      onTap: ()async{
+       await launchUrl(Uri.parse(cards[index]));
+      },
+      child: Container(
+        
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+        color: Colors.amber, 
+        ),
+        child: const Center(
+          child: LuckiestGuyText(text: "OFFER CARD", fontSize: 18.0)
+        ),
+      ),
+    );
+  },
+))
+        ],
+        
+      )
+    );
   }
 }

@@ -144,9 +144,12 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    "assets/models/dashatar.png",
-                    scale: 5,
+                  Padding(
+                    padding: EdgeInsets.only(left: 20, top: 20),
+                    child: Image.asset(
+                      "assets/models/character.png",
+                      scale: 9,
+                    ),
                   )
                 ],
               ),
@@ -188,16 +191,19 @@ class _ProfileState extends State<Profile> {
                                     "assets/icons/leftarrow.png",
                                     scale: 4,
                                   ),
+                                  SizedBox(width: 20,),
                                   Image.asset(
-                                    "assets/models/dashatar.png",
+                                    "assets/models/character.png",
                                     height: 100,
                                   ),
+                                  SizedBox(width: 20,),
                                   Image.asset(
                                     "assets/icons/rightarrow.png",
                                     scale: 4,
                                   )
                                 ],
                               ),
+                              SizedBox(height: 10,),
                               Image.asset(
                                 "assets/icons/checkbox.png",
                                 width: 35,
@@ -231,7 +237,7 @@ class _ProfileState extends State<Profile> {
                                               backgroundColor: AppColors.golden,
                                               radius: 15,
                                               backgroundImage: AssetImage(
-                                                  "assets/models/dashatar.png"),
+                                                  "assets/models/character.png"),
                                             ),
                                             const SizedBox(
                                               width: 10,

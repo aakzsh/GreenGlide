@@ -101,9 +101,11 @@ class _LeaderboardState extends State<Leaderboard> {
                     ],
                   ),
                 ),
-                Image.asset(
-                  "assets/models/dashatar.png",
-                  scale: 6,
+                Padding(padding: EdgeInsets.only(left: 20, top: 20), 
+                child: Image.asset(
+                  "assets/models/character.png",
+                  scale: 9,
+                ),
                 )
               ],
             ),
